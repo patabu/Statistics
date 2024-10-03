@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title-box {
+    background-color: rgb(200, 200, 200, 0.5);
+    padding: 1rem 0 1rem 0;
+}
+
+.title {
+    font-size: 55px;
+    text-align: center;
+}
+
+.input-box {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    input {
+        width: 5rem;
+    }
+}
+
+.input-execute {
+    display: flex;
+    justify-content: center;
+    button {
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+}
+
