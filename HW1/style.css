@@ -110,27 +110,3 @@ button:hover {
 canvas {
     display: block;
 }
-
-.home-button {
-    background-color: #007BFF; /* Colore di sfondo blu */
-    color: white; /* Colore del testo */
-    border: none; /* Rimuovi il bordo */
-    border-radius: 5px; /* Angoli arrotondati */
-    padding: 10px 15px; /* Spaziatura interna */
-    cursor: pointer; /* Mostra il puntatore quando sopra */
-    font-size: 16px; /* Dimensione del testo */
-}
-
-.home-button:hover {
-    background-color: #0056b3; /* Colore di sfondo quando il mouse è sopra */
-}
-
-header {
-    position: relative; /* Necessario per posizionare il pulsante */
-}
-
-.home-button-container {
-    position: absolute; /* Posiziona il pulsante in modo assoluto */
-    top: 20px; /* Spazio dall'alto */
-    right: 20px; /* Spazio dal lato destro */
-}
