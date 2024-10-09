@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Statistics Homework | Davide Bucci</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-photo">
+                    <img src="../biopic.jpg" alt="Foto di Davide Bucci">
+                </div>
+                <div class="profile-info">
+                    <p class="name">Davide Bucci</p>
+                    <p class="matricola">Matricola 2193848</p>
+                </div>
+            </div>
+            <h1>Statistics Homework Repository</h1>
+            <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+            <div class="home-button-container">
+                <button class="home-button" onclick="window.location.href='../index.html'">Home</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="homework-content">
+                <h2>Homework 1 (T): Basic Concepts of Statistics</h2>
+
+                <h3>Population</h3>
+                <p>
+                    In statistics, the term "population" refers to the entire collection of elements or observations that possess a common characteristic and are the subject of a study.
+                    A population can be considered as a wide range of subjects, including individuals, objects, events, or measurements and it doesn't necessarily have to be study of something physically real, but even abstract.
+                    It's useful to know that a Population it's not strictly a static or fixed collection, but it can be dynamic too, such as a stream of data.
+                    To conclude, we are going to consider a population a set of statiscal units.
+
+                </p>
+
+                <h3>Statistical Units</h3>
+                <p>
+                    Statistical units are the individual elements that compose a population. Each unit represents a single observation or measurement of a statistical study. For instance, in a study of student performance, each student would be considered a statistical unit. A proper definition of statistical units ensures that the data collected is relevant and representative of the population being studied.
+                    When observing a statistical unit, we are technically observing its character or variables.
+                </p>
+                <ul>
+                    <li>
+                        <strong>Characters</strong>: represent the abstract properties that define the statistical units that we are observing, such as age, height, weight of people.
+                    </li>
+                    <li>
+                        <strong>variables</strong>: represent the actual values of each character given an actual person (statistical unit), for example age: 22, height: 182cm,  weight: 75kg.
+                    </li>
+                </ul>
+                <br>
+                <p>
+                    Speaking about variables, we can define two ways to measure them:
+                </p>
+                <ul>
+                    <li>
+                        <strong>Quantitatively</strong>: e.g. 180cm when we are observing the height of a statistical unit
+                    </li>
+                    <li>
+                        <strong>Qualitatively</strong>: e.g. Medium (so we are defining categories considered as a subset of the quantitative values, as “Medium” where we consider a range of values like 170cm-185cm)
+                    </li>
+                </ul>                   
+                <h3>Distribution</h3>
+                <p>
+                    In statistics, the concept of distribution refers to the way in which the values of a particular variable are spread across a population of interest.
+                    A population is defined as the entire set of individuals or items that share a common characteristic, while statistical units are the individual elements within that population from which data is collected. 
+                    The distribution illustrates how these statistical units vary in relation to the variable being measured, providing insights into patterns, trends, and anomalies. 
+                    Understanding the distribution of a variable is crucial for analyzing the behavior of the population, as it allows researchers to identify central tendencies, variability, and potential outliers within the data.
+                    Common types of distributions include normal, binomial, and uniform distributions, each of which describes a different way in which values can be arranged within a population.
+                </p>
+                <h3>Average</h3>
+                <p>
+                    The mean is a fundamental statistical measure used to describe a set of numerical data. It is calculated by summing all the values in a dataset and dividing the total by the number of values.
+                    This measure provides a central representation of the data, allowing for the identification of trends and general behaviors.
+                    The mean is particularly useful in various fields, such as economics, science, and education, for analyzing performance, trends, and distributions.
+                    However, it is important to note that the mean can be influenced by extreme values or outliers, which can make it less representative in some cases.
+                    In such instances, other measures, such as the median or mode, may provide a more accurate picture of the data distribution.
+                </p>
+                <h3>Computational problems with Floating-Point Representation</h3>
+                <p>
+                    Floating-point representation is a widely used method for approximating real numbers in computer systems.
+                    While it enables computers to handle a vast range of values, it also introduces several computational problems that can significantly affect numerical accuracy and reliability.
+                    These problems stem from the inherent limitations of representing real numbers in a finite number of bits, leading to phenomena such as rounding errors and catastrophic cancellation.
+                    Understanding these issues is essential for developing robust algorithms and ensuring accurate computational results in scientific and engineering applications.
+                </p>
+                <h3>Rounding errors</h3>
+                <p>
+                    Rounding errors occur when a number cannot be precisely represented in floating-point format due to the limited precision available.
+                    Since computers use a fixed number of bits to store numerical values, many real numbers cannot be expressed exactly.
+                    For example, the decimal number 0.1 does not have an exact representation in binary, leading to a small discrepancy when it is stored.
+                    When arithmetic operations are performed on these approximated values, the errors can accumulate, resulting in significant inaccuracies in the final result.
+                    Rounding errors can be particularly problematic in iterative calculations or when performing operations on large datasets, as even tiny errors can propagate and magnify over time.
+                    To mitigate rounding errors, careful numerical analysis and appropriate algorithms should be employed, ensuring that the impact of these inaccuracies is minimized.
+                </p>
+                <h3>Catastrophic cancellation</h3>
+                <p>
+                    Catastrophic cancellation is a specific type of error that occurs during the subtraction of two nearly equal floating-point numbers. 
+                    When two values that are very close together are subtracted, the significant digits may be lost, leading to a result that has a much larger relative error.
+                    This happens because the precision of floating-point representation is limited; thus, the loss of significant digits can overshadow the actual difference between the two numbers.
+                    For example, if two values, such as 1.000001 and 1.000000, are subtracted, the resulting difference might be inaccurately represented, resulting in a significant error.
+                    Catastrophic cancellation is especially critical in calculations involving polynomials, numerical integration, and other mathematical operations where precision is paramount. 
+                    To avoid catastrophic cancellation, alternative formulations of algorithms should be considered, such as using higher precision arithmetic or restructuring equations to minimize the loss of significant digits.
+                </p>
+                <h2>Homework 1 (P): Attackers, servers and probability</h2>
+            </section>
+        </div>
+        <div class="c-space">
+            <div class="input-box">
+                <div class="input-text">
+                    <label for="servers">Number of servers</label>
+                    <input type="number" value="20" min="0" max="1000" id="servers" name="servers">
+                </div>
+                <div class="input-text">
+                    <label for="attackers">Number of attackers</label>
+                    <input type="number" value="15" min="0" max="1000" id="attackers" name="attackers">    
+                </div>
+                <div class="input-text">
+                    <label for="probability">Probability of a successful attack</label>
+                    <input type="number" value="0.5" min="0" max="1" step="0.1" id="probability" name="probability">    
+                </div>
+                <div class="input-execute">
+                    <button type="button" onclick="onExecute()">Execute</button>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="myCanvas" width="400" height="400"></canvas>
+            </div>
+            <script src="script.js"></script>
+        </div>
+    </main>
+</body>
+</html>
