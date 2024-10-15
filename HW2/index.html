@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Statistics Homework | Davide Bucci</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
+    <script src="./script.js"></script>  
+</head>
+<body>
+    <main>
+        <div class="c-space">
+            <div class="input-box">
+                <div class="input-text">
+                    <label for="servers">Number of servers</label>
+                    <input type="number" value="20" min="0" max="1000" id="servers" name="servers">
+                </div>
+                <div class="input-text">
+                    <label for="attackers">Number of attackers</label>
+                    <input type="number" value="15" min="0" max="1000" id="attackers" name="attackers">    
+                </div>
+                <div class="input-text">
+                    <label for="probability">Probability of a successful attack</label>
+                    <input type="number" value="0.5" min="0" max="1" step="0.1" id="probability" name="probability">    
+                </div>
+                <div class="input-execute">
+                    <button type="button" onclick="onExecute()">Execute</button>
+                </div>
+            </div>
+        </div>
+        <div class="canvas-container">
+            <div class="graph">
+                <canvas id="EMChart" width="700px" height="600px"></canvas>
+            </div>
+            <div class="frequency">
+                <canvas id="AFChart" width="200px" height="585px"></canvas>
+                <!-- <canvas id="RFChart"></canvas> -->
+            </div>
+        </div>
+    </main>
+</body>

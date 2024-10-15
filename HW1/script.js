@@ -52,21 +52,6 @@ function onExecute() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawAxis();
     ctx.font = "12px serif";
-    const servers = document.getElementById("servers").value;
-    if (servers <= 0) {
-        window.alert("Servers must be at least 1");
-        return;
-    }
-    const attackers = document.getElementById("attackers").value;
-    if (attackers <= 0) {
-        window.alert("Attackers must be at least 1");
-        return;
-    }
-    const probability = document.getElementById("probability").value;
-    if (probability <= 0 || probability >= 1) {
-        window.alert("Probability must be between 0 and 1 excluded")
-        return;
-    }
     const space = (graphPositions.xAxis.x.start - graphPositions.xAxis.x.end) / servers;
     
     let penetratedServers = [];

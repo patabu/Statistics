@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.homework-content {
+    padding: 40px 0;
+}
+
+.homework-content h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.homework-content h3 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.homework-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+ul {
+    padding-left: 3rem;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Input */
+input[type="number"] {
+    padding: 10px;
+    border: 2px solid #0066cc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #005bb5;
+    outline: none;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+.input-box {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    input {
+        width: 5rem;
+    }
+}
+
+.input-execute {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+    button {
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    };
+}
+
+/* Canvas container */
+.canvas-container {
+    display: flex;
+    /* align-items: center; */
+
+    /* margin: 2rem; */
+    /* padding: .5rem; */
+    border: 2px solid #0066cc;
+    border-radius: 10px;
+
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* canvas {
+    display: none;
+}    */
+
+.frequency {
+    position: absolute;
+    left: 35.6%;
+    top: 10%;
+}
