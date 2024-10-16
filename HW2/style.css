@@ -96,17 +96,29 @@ button:hover {
     /* padding: 3rem; */
 }
 
-/* canvas {
-    display: none;
-}    */
+.container {
+    width: 1500px;
+}
 
-.frequency {
-    /* position: absolute;
-    left: 38.7%;
-    top: 9%;
-    padding: .2rem; */
-    color: rgb(60, 226, 255);
-    padding-left: -4rem;
-    /* height: 350px; */
-    /* margin-bottom: .2rem; */
+.em-chart-container {
+    position: relative;
+    width: 100%;
+    max-height: 600px;
+}
+
+#EMChart {
+    position: relative;
+    z-index: 1;
+}
+
+#intermediateChart {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+#fd-chart-container {
+    margin-top: 20px;
+    width: 100%;
+    height: 200px;
 }

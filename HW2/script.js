@@ -4,12 +4,13 @@ let chartBarAbsoluteInstance = null;
 
 function onExecute() {
     try {
-        const { numberOfServers, numberOfAttackers, probability } = getInputData();
+        const { numberOfServers, numberOfAttackers, probability, intermediateStep } = getInputData();
         
         const penetrationsData = getDataForEMChart(numberOfServers, numberOfAttackers, probability);
 
+        // drawDistributionChart(penetrationsData, numberOfServers, penetrationsData[0].data.length - 1, 'finalChart');
         drawEMChart(penetrationsData, numberOfServers);
-        drawAFChart(penetrationsData, numberOfServers, numberOfAttackers);
+        drawDistributionChart(penetrationsData, numberOfServers, intermediateStep, 'intermediateChart');
     } catch (error) {
         console.log(error);
     }
@@ -24,7 +25,9 @@ function getDataForEMChart(numberOfServers, numberOfAttackers, probability) {
             fill: false,
             borderColor: getRandomColor(),
             tension: 0,
-            numberOfSuccessfulAttacks: 0
+            numberOfSuccessfulAttacks: 0,
+            pointRadius: 0,
+            borderWidth: .5
         }
         for (let serverIndex = 1; serverIndex <= numberOfServers; serverIndex++) {
             const isAttackSuccessful = Math.random() <= probability;
@@ -36,7 +39,19 @@ function getDataForEMChart(numberOfServers, numberOfAttackers, probability) {
     return penetrationsData;
 }
 
-function drawEMChart(penetrationsData, numberOfServers) {
+function drawEMChart(penetrationsData, numberOfServers, padding) {
+
+    const canvas = document.getElementById('EMChart');
+    const ctx = canvas.getContext('2d');
+
+    let canvasHeight = canvas.height;
+    console.log(canvasHeight);
+    
+    const spaceForRow = (canvasHeight / (numberOfServers * 2)) - (numberOfServers + 1)
+    
+
+    
+
     const data = {
         labels: Array.from({ length: Number(numberOfServers) + 1 }, (_, i) => i),
         datasets: penetrationsData,
@@ -46,6 +61,9 @@ function drawEMChart(penetrationsData, numberOfServers) {
         type: 'line',
         data: data,
         options: {
+            layout: {
+                padding: (spaceForRow / 2)
+            },
             plugins: {
                 legend: {
                     display: false
@@ -58,6 +76,9 @@ function drawEMChart(penetrationsData, numberOfServers) {
                     ticks: {
                         stepSize: 1
                     }
+                },
+                x: {
+                    display: false
                 }
             }
         }
@@ -67,79 +88,82 @@ function drawEMChart(penetrationsData, numberOfServers) {
         chartGraphInstance.destroy();
     }
 
-    const canvas = document.getElementById('EMChart');
-    const ctx = canvas.getContext('2d');
     chartGraphInstance = new Chart(ctx, config);
 }
 
 
-function drawAFChart(penetrationsData, numberOfServers, numberOfAttackers) {
-    
-    let arr = new Array((numberOfServers * 2) + 1).fill(0);
+function drawDistributionChart(penetrationsData, numberOfServers, step, chartName) {
+    if (chartName === 'finalChart') {
+        if (chartBarAbsoluteInstance) chartBarAbsoluteInstance.destroy();
+        const canvas = document.getElementById(chartName);
 
-    console.log(arr.length)
-    
-    
+        const data = getFData(penetrationsData, numberOfServers, step);
 
-    for (let index = 0; index < penetrationsData.length; index++) {
-        let dataArray = penetrationsData[index].data;
-        let indexNewArray = numberOfServers - dataArray[dataArray.length - 1];      
-        arr[indexNewArray]++;
-    }   
-    // arr[1] = 2;
-    
-
-    const data = {
-      labels: Array.from({ length: Number(numberOfServers * 2) + 1 }, (_, i) => i),
-      datasets: [{
-        label: 'Absolute frequency',
-        data: arr,
-        backgroundColor: 'rgb(60, 226, 255)',
-        borderColor: 'rgb(60, 226, 255)',
-        borderWidth: 1,
-        borderSkipped: false
-      }]
-    };
-
-
-
-    const config = {
-        type: 'bar',
-        data: data,
-        options: {
-            responsive: true,
-            mantainAspectRatio: false,
-            indexAxis: 'y',
-            plugins: {
-                // title: {
-                //     display: true,
-                //     text: 'Absolute frequency'
-                // },
-                legend: {
-                    display: false
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                mantainAspectRatio: false,
+                indexAxis: 'y',
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        display: false
+                    }
                 }
             },
-            scales: {
-                x: {
-                    display: false
-                },
-                y: {
-                    display: false
-                }
-            }
-        },
-    };
+        };
 
-    if (chartBarAbsoluteInstance) {
-        chartBarAbsoluteInstance.destroy();
-    }
+        const ctx = canvas.getContext('2d');
+        chartBarAbsoluteInstance = new Chart(ctx, config);
+    } else if (chartName === 'intermediateChart') {
+        if (chartBarRelativeInstance) chartBarRelativeInstance.destroy();
 
-    const canvas1 = document.getElementById('AFChart');
-    const ctx1 = canvas1.getContext('2d');
-    chartBarAbsoluteInstance = new Chart(ctx1, config);
-    console.log((((numberOfServers * 2) + 1) / 200));
-    chartBarAbsoluteInstance.canvas.parentNode.style.height = 610 - (2 / numberOfServers) + 'px';
+        const canvas = document.getElementById(chartName);
+
+        // * Calcolo la posizione orizzontale per le barre intermedie
+        const chartArea = chartGraphInstance.chartArea;
+        console.log(chartArea);
+        
+        const chartWidth = chartArea.right - chartArea.left;
+        const relativeLeft = step / numberOfServers * chartWidth;
+        const left = chartArea.left + relativeLeft;
+        canvas.style.left = left + 'px';
+
+        const chartHeight = chartArea.bottom - chartArea.top; // * Calcolo la posizione verticale per le barre intermedie
     
+        const barThickness = chartHeight / ((numberOfServers * 2) * 2); // * Rappresenta la grandezza di una barra
+
+        const data = getFData(penetrationsData, numberOfServers, step);
+    
+        const config = {
+            type: 'bar',
+            data: data,
+            options: {
+                indexAxis: 'y',
+                plugins: { legend: { display: false } },
+                scales: {
+                    x: { display: false },
+                    y: { 
+                        display: false,
+                        offset: 2
+                    }
+                }
+            },
+        };
+
+        const ctx = canvas.getContext('2d');
+        chartBarRelativeInstance = new Chart(ctx, config);
+        return barThickness;
+    }
 }
 
 function drawRFChart() {
@@ -219,14 +243,12 @@ function getInputData() {
         window.alert("Probability must be between 0 and 1 excluded")
         throw Error("Probability must be between 0 and 1 excluded");
     }
-    const intermediateStep = Number(document.getElementById("intermediateStep").value);
-    console.log(numberOfServers, intermediateStep);
-    
+    const intermediateStep = Number(document.getElementById("intermediateStep").value);    
     if (intermediateStep < 1 || intermediateStep >= numberOfServers) {
         window.alert('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
         throw Error('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
     }
-    return { numberOfServers, numberOfAttackers, probability };
+    return { numberOfServers, numberOfAttackers, probability, intermediateStep };
 }
 
 document.addEventListener("keydown", function(event) {
@@ -234,3 +256,28 @@ document.addEventListener("keydown", function(event) {
     const key = event.key;
     if (key === 'Enter' || key === 'Space' || key === ' ') onExecute();
 });
+
+function getFData(penetrationsData, numberOfServers, step) {
+    let arr = new Array((numberOfServers * 2) + 1).fill(0);
+
+    for (let index = 0; index < penetrationsData.length; index++) {
+        let dataArray = penetrationsData[index].data;
+        let indexNewArray = numberOfServers - dataArray[step];      
+        arr[indexNewArray]++;
+    }
+    
+
+    const data = {
+      labels: Array.from({ length: Number(numberOfServers * 2) + 1 }, (_, i) => i),
+      datasets: [{
+        label: 'Step ' + step,
+        data: arr,
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        borderColor: 'rgb(100, 100, 100)',
+        borderWidth: 1,
+        borderSkipped: false
+      }]
+    };
+
+    return data;
+}
