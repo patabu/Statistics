@@ -8,11 +8,91 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>  
     <script src="./script.js"></script>  
 </head>
 <body>
+    <header>
+        <div class="container">
+            <h1>Statistics Homework Repository</h1>
+            <p>Davide Bucci - Matricola 2193848</p>
+            <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+        </div>  
+    </header>
     <main>
+        <div class="container">
+            <section class="homework-content">
+                <h2>Homework 2 (T)</h2>
+
+                <h3>Welford's recursion</h3>
+                <p>
+                    Welford’s recursion is a numerically stable method for computing the mean and variance of a set of data incrementally, without needing to store all the data points. This approach is particularly useful for online algorithms, where data comes in a stream, and we want to continuously update the statistics.
+
+                    The key idea is that Welford's algorithm updates the mean and variance iteratively as new data points are introduced. The update for the mean and variance after observing the new data point xixi​ at step ii is given by:
+                    <br>
+                    <h4>Mean update:</h4>
+                    \begin{equation}
+                    \mu_{i} = \mu_{i-1} + \frac{x_i - \mu_{i-1}}{i}
+                    \end{equation}
+                    
+                    where \(μ_i\) is the updated mean after the \(i\)-th point.
+                    <h4>Variance update:</h4>
+                    \begin{equation}
+                    \sigma^2_{i} = \sigma^2_{i-1} + (x_i - \mu_{i-1})(x_i - \mu_{i})
+                    \end{equation}
+                                        
+                    This formula ensures that the variance is updated without needing to store previous data points, making it efficient in both time and space.
+                    
+                    Welford's method is preferred over the traditional approach for calculating variance, especially when handling large datasets or when dealing with potential round-off errors, as it minimizes loss of precision.
+                    <h4>1. Mean Update</h4>
+                    <p>
+                        Let \(\mu_{n-1}\) be the mean of the first \(n-1\) data points, and let \(x_n\) be the new data point. The new mean \(\mu_n\) is given by:
+                    </p>
+                        \begin{equation}
+                        \mu_n = \frac{(n-1) \mu_{n-1} + x_n}{n}
+                        \end{equation}
+                    <p>
+                        This can be rearranged to show the incremental update:
+                    </p>
+                        \begin{equation}
+                        \mu_n = \mu_{n-1} + \frac{x_n - \mu_{n-1}}{n}
+                        \end{equation}
+                    <p>
+                        This form clearly illustrates that the mean is updated based on the difference between the new data point and the current mean, scaled by the total number of points.
+                    </p>
+
+                    <h4>2. Variance Update</h4>
+                    <p>
+                        Let \(\sigma^2_{n-1}\) be the variance of the first \(n-1\) data points, defined as:
+                    </p>
+                        \begin{equation}
+                        \sigma^2_{n-1} = \frac{1}{n-1} \sum_{i=1}^{n-1} (x_i - \mu_{n-1})^2
+                        \end{equation}
+                    <p>
+                        After adding the new data point \(x_n\), the updated variance \(\sigma^2_n\) is computed as:
+                    </p>
+                        \begin{equation}
+                        \sigma^2_n = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu_n)^2
+                        \end{equation}
+                    <p>
+                        Expanding this and rearranging gives:
+                    </p>
+                        \begin{equation}
+                        \sigma^2_n = \sigma^2_{n-1} + \frac{(x_n - \mu_{n-1})(x_n - \mu_n)}{n}
+                        \end{equation}
+                    <p>
+                        This equation shows how to update the variance incrementally without needing all previous data points, maintaining numerical stability.
+                    </p>
+
+                    <h4>Summary</h4>
+                    <p>
+                    Welford's recursion allows for efficient updates of the mean and variance as new data points are added, ensuring that calculations remain stable and require minimal memory overhead. This approach is particularly advantageous when handling large datasets or streaming data.
+                    </p>
+                </p>
+                <h2>Homework 2 (P)</h2>
+            </section>
+        </div>
         <div class="c-space">
             <div class="input-box">
                 <div class="input-text">
@@ -39,11 +119,15 @@
         <div class="container">
             <div class="em-chart-container">
                 <canvas id="EMChart" width="1200px" height="600px"></canvas>
-                <canvas id="intermediateChart" height="600px"></canvas>
+                <canvas id="intermediateChart" width="100px" height="600px"></canvas>
             </div>
             <div class="fd-chart-container">
-                <canvas id="finalChart" width="300px" height="600px"></canvas>
+                <canvas id="finalChart" width="100px" height="600px"></canvas>
             </div>
+        </div>
+        <div class="container">
+            <canvas id=""></canvas>
+            <canvas></canvas>
         </div>
     </main>
 </body>

@@ -11,6 +11,7 @@ function onExecute() {
         // drawDistributionChart(penetrationsData, numberOfServers, penetrationsData[0].data.length - 1, 'finalChart');
         drawEMChart(penetrationsData, numberOfServers);
         drawDistributionChart(penetrationsData, numberOfServers, intermediateStep, 'intermediateChart');
+        drawDistributionChart(penetrationsData, numberOfServers, numberOfServers, 'finalChart');
     } catch (error) {
         console.log(error);
     }
@@ -40,17 +41,10 @@ function getDataForEMChart(numberOfServers, numberOfAttackers, probability) {
 }
 
 function drawEMChart(penetrationsData, numberOfServers, padding) {
-
     const canvas = document.getElementById('EMChart');
     const ctx = canvas.getContext('2d');
-
-    let canvasHeight = canvas.height;
-    console.log(canvasHeight);
     
-    const spaceForRow = (canvasHeight / (numberOfServers * 2)) - (numberOfServers + 1)
-    
-
-    
+    const spaceForRow = (canvas.height / (numberOfServers * 2)) - (numberOfServers + 1)
 
     const data = {
         labels: Array.from({ length: Number(numberOfServers) + 1 }, (_, i) => i),
@@ -84,9 +78,7 @@ function drawEMChart(penetrationsData, numberOfServers, padding) {
         }
     };
 
-    if (chartGraphInstance) {
-        chartGraphInstance.destroy();
-    }
+    if (chartGraphInstance) chartGraphInstance.destroy();
 
     chartGraphInstance = new Chart(ctx, config);
 }
@@ -97,7 +89,7 @@ function drawDistributionChart(penetrationsData, numberOfServers, step, chartNam
         if (chartBarAbsoluteInstance) chartBarAbsoluteInstance.destroy();
         const canvas = document.getElementById(chartName);
 
-        const data = getFData(penetrationsData, numberOfServers, step);
+        const data = getDistributionData(penetrationsData, numberOfServers, step);
 
         const config = {
             type: 'bar',
@@ -122,6 +114,10 @@ function drawDistributionChart(penetrationsData, numberOfServers, step, chartNam
             },
         };
 
+        console.log(EMChart.height);
+        
+        canvas.height = EMChart.style.height;
+
         const ctx = canvas.getContext('2d');
         chartBarAbsoluteInstance = new Chart(ctx, config);
     } else if (chartName === 'intermediateChart') {
@@ -131,18 +127,12 @@ function drawDistributionChart(penetrationsData, numberOfServers, step, chartNam
 
         // * Calcolo la posizione orizzontale per le barre intermedie
         const chartArea = chartGraphInstance.chartArea;
-        console.log(chartArea);
-        
         const chartWidth = chartArea.right - chartArea.left;
         const relativeLeft = step / numberOfServers * chartWidth;
         const left = chartArea.left + relativeLeft;
         canvas.style.left = left + 'px';
 
-        const chartHeight = chartArea.bottom - chartArea.top; // * Calcolo la posizione verticale per le barre intermedie
-    
-        const barThickness = chartHeight / ((numberOfServers * 2) * 2); // * Rappresenta la grandezza di una barra
-
-        const data = getFData(penetrationsData, numberOfServers, step);
+        const data = getDistributionData(penetrationsData, numberOfServers, step);
     
         const config = {
             type: 'bar',
@@ -162,60 +152,13 @@ function drawDistributionChart(penetrationsData, numberOfServers, step, chartNam
 
         const ctx = canvas.getContext('2d');
         chartBarRelativeInstance = new Chart(ctx, config);
-        return barThickness;
     }
-}
-
-function drawRFChart() {
-    const data2 = {
-        labels: penetrationsData.map(attacker => attacker.label),
-        datasets: [{
-        //   label: 'Relative frequency',
-          data: data.datasets[0].data.map(value => value / numberOfServers),
-          backgroundColor: penetrationsData.map(attacker => {
-              const color = attacker.borderColor;
-              return color.slice(0, 3) + 'a' + color.slice(3, color.length - 1) + ', 0.4)';
-          }),
-          borderColor: penetrationsData.map(attacker => attacker.borderColor),
-          borderWidth: 1
-        }]
-    };
-
-    const config2 = {
-        type: 'bar',
-        data: data2,
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Relative frequency'
-                },
-                legend: {
-                    display: false
-                }
-            },
-            scales: {
-                y: {
-                beginAtZero: true,
-                max: 1
-                }
-            }
-        },
-    }
-
-    if (chartBarRelativeInstance) {
-        chartBarRelativeInstance.destroy();
-    }
-
-    const canvas2 = document.getElementById('RFChart');
-    const ctx2 = canvas2.getContext('2d');
-    chartBarRelativeInstance = new Chart(ctx2, config2);
 }
 
 function getRandomColor() {
-    var r = Math.floor(Math.random() * 256); // Valore rosso
-    var g = Math.floor(Math.random() * 256); // Valore verde
-    var b = Math.floor(Math.random() * 256); // Valore blu
+    var r = Math.floor(Math.random() * 220); // Valore rosso
+    var g = Math.floor(Math.random() * 220); // Valore verde
+    var b = Math.floor(Math.random() * 220); // Valore blu
     return 'rgb(' + r + ', ' + g + ', ' + b + ')'; // Restituisce il colore in formato RGB
 }
 
@@ -252,27 +195,25 @@ function getInputData() {
 }
 
 document.addEventListener("keydown", function(event) {
-    // Ottengo il nome del tasto premuto
     const key = event.key;
     if (key === 'Enter' || key === 'Space' || key === ' ') onExecute();
 });
 
-function getFData(penetrationsData, numberOfServers, step) {
-    let arr = new Array((numberOfServers * 2) + 1).fill(0);
+function getDistributionData(penetrationsData, numberOfServers, step) {
+    let distribution = new Array((numberOfServers * 2) + 1).fill(0);
 
     for (let index = 0; index < penetrationsData.length; index++) {
         let dataArray = penetrationsData[index].data;
         let indexNewArray = numberOfServers - dataArray[step];      
-        arr[indexNewArray]++;
+        distribution[indexNewArray]++;
     }
-    
 
     const data = {
       labels: Array.from({ length: Number(numberOfServers * 2) + 1 }, (_, i) => i),
       datasets: [{
         label: 'Step ' + step,
-        data: arr,
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        data: distribution,
+        backgroundColor: step === numberOfServers ? 'rgba(255, 0, 255, 0.5)' : 'rgba(77, 236, 6, 1)',
         borderColor: 'rgb(100, 100, 100)',
         borderWidth: 1,
         borderSkipped: false
