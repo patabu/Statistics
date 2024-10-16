@@ -3,6 +3,16 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.title-box {
+    background-color: rgb(200, 200, 200, 0.5);
+    padding: 1rem 0 1rem 0;
+}
+
+.title {
+    font-size: 55px;
+    text-align: center;
+}
+
 .homework-content {
     padding: 40px 0;
 }
