@@ -77,11 +77,16 @@ function drawAFChart(penetrationsData, numberOfServers, numberOfAttackers) {
     
     let arr = new Array((numberOfServers * 2) + 1).fill(0);
 
+    console.log(arr.length)
+    
+    
+
     for (let index = 0; index < penetrationsData.length; index++) {
         let dataArray = penetrationsData[index].data;
-        let indexNewArray = 50 - dataArray[dataArray.length - 1];      
+        let indexNewArray = numberOfServers - dataArray[dataArray.length - 1];      
         arr[indexNewArray]++;
-    }
+    }   
+    // arr[1] = 2;
     
 
     const data = {
@@ -89,9 +94,10 @@ function drawAFChart(penetrationsData, numberOfServers, numberOfAttackers) {
       datasets: [{
         label: 'Absolute frequency',
         data: arr,
-        backgroundColor: 'rgb(255, 99, 132)',
-        borderColor: 'rgb(255, 99, 132)',
-        borderWidth: 1
+        backgroundColor: 'rgb(60, 226, 255)',
+        borderColor: 'rgb(60, 226, 255)',
+        borderWidth: 1,
+        borderSkipped: false
       }]
     };
 
@@ -114,14 +120,11 @@ function drawAFChart(penetrationsData, numberOfServers, numberOfAttackers) {
                 }
             },
             scales: {
-                // x: {
-                //     display: false
-                // },
+                x: {
+                    display: false
+                },
                 y: {
-                    // display: false,
-                    ticks: {
-                        stepSize: 100
-                    }
+                    display: false
                 }
             }
         },
@@ -134,6 +137,9 @@ function drawAFChart(penetrationsData, numberOfServers, numberOfAttackers) {
     const canvas1 = document.getElementById('AFChart');
     const ctx1 = canvas1.getContext('2d');
     chartBarAbsoluteInstance = new Chart(ctx1, config);
+    console.log((((numberOfServers * 2) + 1) / 200));
+    chartBarAbsoluteInstance.canvas.parentNode.style.height = 610 - (2 / numberOfServers) + 'px';
+    
 }
 
 function drawRFChart() {
@@ -197,20 +203,34 @@ function getOldInputData() {
 }
 
 function getInputData() {
-    const numberOfServers = document.getElementById("servers").value;
+    const numberOfServers = Number(
+        document.getElementById("servers").value);
     if (numberOfServers <= 0) {
         window.alert("Servers must be at least 1");
         throw Error("Servers must be at least 1");
     }
-    const numberOfAttackers = document.getElementById("attackers").value;
+    const numberOfAttackers = Number(document.getElementById("attackers").value);
     if (numberOfAttackers <= 0) {
         window.alert("Attackers must be at least 1");
         throw Error("Attackers must be at least 1");
     }
-    const probability = document.getElementById("probability").value;
+    const probability = Number(document.getElementById("probability").value);
     if (probability <= 0 || probability >= 1) {
         window.alert("Probability must be between 0 and 1 excluded")
         throw Error("Probability must be between 0 and 1 excluded");
     }
+    const intermediateStep = Number(document.getElementById("intermediateStep").value);
+    console.log(numberOfServers, intermediateStep);
+    
+    if (intermediateStep < 1 || intermediateStep >= numberOfServers) {
+        window.alert('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
+        throw Error('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
+    }
     return { numberOfServers, numberOfAttackers, probability };
 }
+
+document.addEventListener("keydown", function(event) {
+    // Ottengo il nome del tasto premuto
+    const key = event.key;
+    if (key === 'Enter' || key === 'Space' || key === ' ') onExecute();
+});

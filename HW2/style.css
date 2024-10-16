@@ -93,6 +93,7 @@ button:hover {
     background-color: #fff;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 
+    /* padding: 3rem; */
 }
 
 /* canvas {
@@ -100,7 +101,12 @@ button:hover {
 }    */
 
 .frequency {
-    position: absolute;
-    left: 35.6%;
-    top: 10%;
+    /* position: absolute;
+    left: 38.7%;
+    top: 9%;
+    padding: .2rem; */
+    color: rgb(60, 226, 255);
+    padding-left: -4rem;
+    /* height: 350px; */
+    /* margin-bottom: .2rem; */
 }
