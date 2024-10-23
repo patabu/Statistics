@@ -51,25 +51,26 @@ function drawChartAxis() {
 
 function onExecute() {
     try {
-        const { numberOfServers, numberOfAttackers, probability } = getInputData(); 
+        const { numberOfIntervals, numberOfAttackers, lambda } = getInputData(); 
+        const probability = lambda / numberOfIntervals;
         clearChart();
         drawChartAxis();
         ctx.font = "12px serif";
-        const spacePerServer = (graphPositions.xAxis.x.start - graphPositions.xAxis.x.end) / numberOfServers;
+        const spacePerServer = (graphPositions.xAxis.x.start - graphPositions.xAxis.x.end) / numberOfIntervals;
     
-        let penetratedServers = new Array(numberOfServers + 1).fill(0);
+        let penetratedServers = new Array(numberOfIntervals + 1).fill(0);
     
         ctx.fillText(0, graphPositions.xAxis.x.end, graphPositions.xAxis.y.start + 20)
-        ctx.fillText(numberOfServers, graphPositions.xAxis.x.start, graphPositions.xAxis.y.start + 20)
+        ctx.fillText(numberOfIntervals, graphPositions.xAxis.x.start, graphPositions.xAxis.y.start + 20)
     
-        const spaceForServer = (graphPositions.yAxis.y.end - graphPositions.yAxis.y.start) / numberOfServers;
+        const spaceForServer = (graphPositions.yAxis.y.end - graphPositions.yAxis.y.start) / numberOfIntervals;
         ctx.lineWidth = 1.5;
     
     
         for (let attacker = 0; attacker < numberOfAttackers; attacker++) {
             let numberOfSuccessfulAttacks = 0;
             ctx.strokeStyle = "#" + Math.floor(Math.random()*16777215).toString(16);
-            for (let server = 0; server < numberOfServers; server++) {
+            for (let server = 0; server < numberOfIntervals; server++) {
                 const xStartPoint = graphPositions.xAxis.x.end + (spacePerServer * server);
                 const xEndPoint = graphPositions.xAxis.x.end + (spacePerServer * (server + 1))
                 const yStartPoint = (graphPositions.xAxis.y.start - (spaceForServer * numberOfSuccessfulAttacks));
@@ -87,11 +88,11 @@ function onExecute() {
         ctx.strokeStyle = "#000000";
         const maxHackersOnSameServer = Math.max(...penetratedServers);
         const spaceForHackerDistribution = ((canvas.width * 1 / 5) - 20) / maxHackersOnSameServer;
-        for (let server = 0; server <= numberOfServers; server++) {
+        for (let server = 0; server <= numberOfIntervals; server++) {
             if (!penetratedServers[server]) continue;
             const xStartPoint = graphPositions.xAxis.x.start;
             const xEndPoint = xStartPoint + (spaceForHackerDistribution * penetratedServers[server]);
-            const y = graphPositions.yAxis.y.end - (((graphPositions.yAxis.y.end - graphPositions.yAxis.y.start) / numberOfServers) * (server));
+            const y = graphPositions.yAxis.y.end - (((graphPositions.yAxis.y.end - graphPositions.yAxis.y.start) / numberOfIntervals) * (server));
             ctx.strokeStyle = "#ff0000";
             ctx.beginPath();
             ctx.moveTo(xStartPoint, y);
@@ -113,14 +114,14 @@ function onExecute() {
 }
 
 function getInputData() {
-    const numberOfServers = Number(document.getElementById("servers").value);
-    if (numberOfServers <= 0) throw Error("Servers must be at least 1");
+    const numberOfIntervals = Number(document.getElementById("intervals").value);
+    if (numberOfIntervals <= 0 || numberOfIntervals > 10000) throw Error("Intervals must be between 1 and 10000");
     
     const numberOfAttackers = Number(document.getElementById("attackers").value);
-    if (numberOfAttackers <= 0) throw Error("Attackers must be at least 1");
+    if (numberOfAttackers <= 0 || numberOfAttackers > 10000) throw Error("Attackers must be between 1 and 10000");
 
-    const probability = Number(document.getElementById("probability").value);
-    if (probability <= 0 || probability >= 1) throw Error("Probability must be between 0 and 1");
+    const lambda = Number(document.getElementById("lambda").value);
+    if (lambda <= 0 || lambda > numberOfIntervals || lambda > numberOfIntervals) throw Error("Lambda must be between 1 and " + numberOfIntervals);
 
-    return { numberOfServers, numberOfAttackers, probability };
+    return { numberOfIntervals, numberOfAttackers, lambda };
 }

@@ -40,7 +40,7 @@ function getDataForEMChart(numberOfServers, numberOfAttackers, probability) {
     return penetrationsData;
 }
 
-function drawEMChart(penetrationsData, numberOfServers, padding) {
+function drawEMChart(penetrationsData, numberOfServers) {
     const canvas = document.getElementById('EMChart');
     const ctx = canvas.getContext('2d');
     
@@ -170,8 +170,7 @@ function getOldInputData() {
 }
 
 function getInputData() {
-    const numberOfServers = Number(
-        document.getElementById("servers").value);
+    const numberOfServers = Number(document.getElementById("servers").value);
     if (numberOfServers <= 0) {
         window.alert("Servers must be at least 1");
         throw Error("Servers must be at least 1");

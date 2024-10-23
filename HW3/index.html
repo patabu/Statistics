@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Statistics Homework | Davide Bucci</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Statistics Homework Repository</h1>
+            <p>Davide Bucci - Matricola 2193848</p>
+            <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+        </div>  
+    </header>
+    <main>
+        <div class="container">
+            <section class="homework-content">
+                <h2>Homework 3 (T): Basic Concepts of Statistics</h2>
+                
+                <h2>Why the Median Minimizes the Sum of Absolute Deviations</h4>
+                
+                <p>
+                    In this research, we aim to show why the median of a dataset minimizes the sum of absolute deviations, formally represented by the following:
+                </p>
+                
+                <p>
+                    \[
+                    S(c) = \sum_{i=1}^n |x_i - c|
+                    \]
+                </p>
+                
+                <p>
+                    Where:
+                    <ul>
+                        <li>\( x_1, x_2, \dots, x_n \) are the data points</li>
+                        <li>\( c \) is a candidate value for minimizing the sum of absolute deviations</li>
+                    </ul>
+                </p>
+                
+                <h4>Intuition</h4>
+                
+                <p>
+                    The median is the value that balances the dataset such that the total distance (in absolute terms) to all points is minimized. This can be formally proven by demonstrating that \( c \), when chosen as the median, yields the minimum value of \( S(c) \).
+                </p>
+                
+                <h4>Proof Outline</h2>
+                
+                <p>
+                    Let’s order the data points such that \( x_1 \leq x_2 \leq \dots \leq x_n \). We want to investigate how the function
+                </p>
+                
+                <p>
+                    \[
+                    S(c) = \sum_{i=1}^n |x_i - c|
+                    \]
+                </p>
+                
+                <p>
+                    behaves as \( c \) changes.
+                </p>
+                
+                <h4>Step 1: Sum of Absolute Deviations Function</h4>
+                
+                <p>
+                    We define the sum of absolute deviations function:
+                </p>
+                
+                <p>
+                    \[
+                    S(c) = \sum_{i=1}^n |x_i - c|
+                    \]
+                </p>
+                
+                <p>
+                    This represents the total distance of all data points \( x_i \) from \( c \). Our goal is to minimize this function over possible values of \( c \).
+                </p>
+                
+                <h4>Step 2: Behavior of \( S(c) \)</h4>
+                
+                <p>
+                    The absolute value function \( |x_i - c| \) changes behavior based on whether \( c \) is less than, equal to, or greater than \( x_i \). Specifically:
+                </p>
+                
+                <ul>
+                    <li>For \( c < x_i \), \( |x_i - c| = x_i - c \) (the slope is positive).</li>
+                    <li>For \( c > x_i \), \( |x_i - c| = c - x_i \) (the slope is negative).</li>
+                </ul>
+                
+                <p>
+                    Therefore, as \( c \) changes, the function \( S(c) \) is piecewise linear with kinks at each \( x_i \) (the data points). The slope of the function changes at each \( x_i \).
+                </p>
+                
+                <h4>Step 3: Changes in the Slope of \( S(c) \)</h4>
+                
+                <p>
+                    Consider how the slope of \( S(c) \) behaves as \( c \) increases:
+                </p>
+                
+                <ul>
+                    <li>For \( c \) smaller than all \( x_i \), the sum is decreasing (all terms contribute a negative slope).</li>
+                    <li>For \( c \) between two consecutive data points, the slope increases by +1 for each data point that \( c \) passes. That is, for every \( x_i \leq c \), the total slope increases.</li>
+                </ul>
+                
+                <p>
+                    As \( c \) crosses each data point, the slope changes. Initially, the sum decreases, then increases once the median is passed.
+                </p>
+                
+                <h4>Step 4: Minimum at the Median</h>
+                
+                <p>
+                    The key insight is that at the median, the number of data points on either side of \( c \) is balanced. For a dataset with an odd number of points, the median is the middle value, and for an even number of points, it’s the average of the two middle values.
+                </p>
+                
+                <p>
+                    This balance ensures that the slope of \( S(c) \) changes from negative to positive at the median. Therefore, the sum of absolute deviations is minimized at the median.
+                </p>
+                
+                <h4>Conclusion</h4>
+                
+                <p>
+                    The median of a dataset minimizes the sum of absolute deviations because at the median, the total "pull" of data points to the left and right of \( c \) is balanced. This property is unique to the median and results in the smallest possible total distance to all points.
+                </p>
+                
+                <h2>Conceptual Definitions of Location Statistics</h2>
+                
+                <p>
+                    In statistics, "location" statistics, also referred to as measures of central tendency, aim to capture the central point or typical value of a dataset. There are several classical ways to define such measures, but more generally, the concept can be extended in various ways. This leads to an infinite number of potential definitions of location statistics.
+                </p>
+                
+                <h4>Classical Definitions</h4>
+                
+                <p>
+                    The most common measures of central tendency include:
+                </p>
+                
+                <ul>
+                    <li><b>Mean:</b> The arithmetic mean (or average) is the most widely known location statistic. It is defined as:
+                        \[
+                        \mu = \frac{1}{n} \sum_{i=1}^n x_i
+                        \]
+                        where \( x_1, x_2, \dots, x_n \) are the data points.
+                    </li>
+                
+                    <li><b>Median:</b> The median is the middle value that separates the dataset into two equal halves. If the data are ordered as \( x_1 \leq x_2 \leq \dots \leq x_n \), the median \( M \) is:
+                        \[
+                        M = 
+                        \begin{cases}
+                        x_{\frac{n+1}{2}} & \text{if } n \text{ is odd}, \\
+                        \frac{x_{\frac{n}{2}} + x_{\frac{n}{2}+1}}{2} & \text{if } n \text{ is even}.
+                        \end{cases}
+                        \]
+                    </li>
+                
+                    <li><b>Mode:</b> The mode is the value that appears most frequently in the dataset. If no value repeats, the dataset is said to have no mode.
+                    </li>
+                
+                    <li><b>Geometric Mean:</b> The geometric mean is often used for data that are multiplicative in nature and is defined as:
+                        \[
+                        G = \left( \prod_{i=1}^n x_i \right)^{\frac{1}{n}}
+                        \]
+                    </li>
+                </ul>
+                
+                <h4>Generalizations of Location Statistics</h4>
+                
+                <p>
+                    Beyond these classical definitions, there are several ways to generalize or redefine the idea of a location statistic. Some of these generalizations include:
+                </p>
+                
+                <ul>
+                    <li><b>Trimmed Mean:</b> The trimmed mean is similar to the arithmetic mean but excludes the largest and smallest \( p\% \) of the data. This makes the mean less sensitive to outliers:
+                        \[
+                        \text{Trimmed Mean} = \frac{1}{n - 2k} \sum_{i=k+1}^{n-k} x_i
+                        \]
+                        where \( k \) is the number of values removed from each end.
+                    </li>
+                
+                    <li><b>Weighted Mean:</b> Instead of treating all data points equally, the weighted mean assigns different weights \( w_i \) to each value:
+                        \[
+                        \text{Weighted Mean} = \frac{\sum_{i=1}^n w_i x_i}{\sum_{i=1}^n w_i}
+                        \]
+                    </li>
+                
+                    <li><b>Quantiles:</b> Quantiles divide the data into intervals with equal probabilities. The \( q \)-th quantile \( Q_q \) is the data point below which \( q\% \) of the data lies.
+                    </li>
+                </ul>
+                
+                <h4>Infinite Possibilities for Defining Location Statistics</h4>
+                
+                <p>
+                    The concept of a location statistic can be generalized even further by combining different approaches or introducing entirely new ones:
+                </p>
+                
+                <ul>
+                    <li><b>L-Estimators:</b> L-estimators are statistics defined as linear combinations of order statistics (i.e., the sorted values). A popular example is the <i>interquartile mean</i>, which takes the mean of the middle 50% of the data.
+                    </li>
+                
+                    <li><b>M-Estimators:</b> M-estimators generalize the idea of location by defining a function \( \rho(x) \) that measures the "penalty" for deviations from a central point. The estimator minimizes the sum of these penalties:
+                        \[
+                        \hat{\theta} = \arg \min_{\theta} \sum_{i=1}^n \rho(x_i - \theta)
+                        \]
+                        For instance, the mean minimizes the sum of squared deviations \( \rho(x) = x^2 \), while the median minimizes the sum of absolute deviations \( \rho(x) = |x| \).
+                    </li>
+                
+                    <li><b>Center of Mass (Physical Analogy):</b> The concept of "center" can also be extended using physical analogies, such as the center of mass. If we think of the data as having "weights" distributed along a line, the center of mass would be the balance point, which may align with the weighted mean in a statistical sense.
+                    </li>
+                
+                    <li><b>Robust Estimators:</b> In situations where data contain outliers, robust estimators provide better location statistics. Examples include the <i>median absolute deviation (MAD)</i>, which is based on the median of absolute deviations from the median.
+                    </li>
+                </ul>
+                
+                <h4>Conclusion</h4>
+                
+                <p>
+                    Location statistics, or measures of central tendency, are essential for summarizing data. While the mean, median, and mode are classical examples, the idea of a "center" can be generalized in many ways, leading to a wide variety of possible statistics that are tailored to specific datasets or goals. By changing the way we aggregate, weigh, or measure deviations, we can potentially define an infinite number of location statistics, each providing different insights into the distribution.
+                </p>
+                
+
+                <h2>Homework 3 (P): Poisson</h2>
+            </section>
+        </div>
+        <div class="c-space">
+            <div class="input-box">
+                <div class="input-text">
+                    <label for="intervals">Number of intervals</label>
+                    <input type="number" value="350" min="1" max="10000" id="intervals" name="intervals">
+                </div>
+                <div class="input-text">
+                    <label for="attackers">Number of attackers</label>
+                    <input type="number" value="40" min="1" max="10000" id="attackers" name="attackers">    
+                </div>
+                <div class="input-text">
+                    <label for="lambda">Lambda</label>
+                    <input type="number" value="1" min="1" max="10000" step="1" id="lambda" name="lambda">    
+                </div>
+                <div class="input-execute">
+                    <button type="button" onclick="onExecute()">Execute</button>
+                </div>
+            </div>
+            <div class="canvas-container">
+                <canvas id="myCanvas" width="1000" height="1000"></canvas>
+            </div>
+            <script src="script.js"></script>
+        </div>
+    </main>
+</body>
+</html>
