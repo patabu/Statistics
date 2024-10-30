@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistical Independence</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Statistics Homework Repository</h1>
+      <p>Davide Bucci - Matricola 2193848</p>
+      <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="homework-content">
+        <h1>Statistical Independence</h1>
+        <p>
+          Statistical independence between two events, <em>A</em> and <em>B</em>, means that the occurrence of
+          one event does not provide any information about the occurrence of the other.
+          In probability theory, this concept is formalized by saying that events <em>A</em> and <em>B</em>
+          are independent if:
+        </p>
+        <div>
+          \[ P(A \cap B) = P(A) \cdot P(B) \]
+        </div>
+        <p>where:</p>
+        <ul>
+          <li><em>P(A)</em> is the probability of event <em>A</em>,</li>
+          <li><em>P(B)</em> is the probability of event <em>B</em>,</li>
+          <li><em>P(A ∩ B)</em> is the probability of both events occurring together (their intersection).
+          </li>
+        </ul>
+
+        <h2>Illustrative Example: Rolling Dice</h2>
+        <p>
+          Consider rolling two six-sided dice. Define events:
+        </p>
+        <ul>
+          <li><em>A</em>: The first die shows a 4.</li>
+          <li><em>B</em>: The second die shows an even number.</li>
+        </ul>
+        <p>
+          Since the outcome of one die roll does not influence the outcome of the other, events <em>A</em> and
+          <em>B</em> are independent. We can verify this:
+        </p>
+        <div>
+          \[ P(A) = \frac{1}{6}, \quad P(B) = \frac{3}{6} = \frac{1}{2} \]
+        </div>
+        <p>
+          The probability of both <em>A</em> and <em>B</em> occurring is:
+        </p>
+        <div>
+          \[ P(A \cap B) = P(\text{first die shows 4 and second die is even}) = \frac{1}{6} \cdot \frac{1}{2}
+          = \frac{1}{12} \]
+        </div>
+        <p>
+          Thus, <em>P(A ∩ B) = P(A) · P(B)</em>, confirming that <em>A</em> and <em>B</em> are independent.
+        </p>
+
+        <h2>Random Variables and Independence</h2>
+        <p>
+          For random variables, independence means that the joint distribution of the variables can be
+          separated into the product of their individual distributions.
+        </p>
+        <h3>Example: Independent Random Variables</h3>
+        <p>
+          Consider two independent random variables <em>X</em> and <em>Y</em>, where:
+        </p>
+        <ul>
+          <li><em>X</em> represents the outcome of a fair six-sided die, taking values 1, 2, ..., 6,</li>
+          <li><em>Y</em> represents the outcome of a fair coin flip, taking values 0 (tails) or 1 (heads).
+          </li>
+        </ul>
+        <p>
+          The probability distribution for <em>X</em> is:
+        </p>
+        <div>
+          \[ P(X = x) = \frac{1}{6} \quad \text{for } x = 1, 2, 3, 4, 5, 6 \]
+        </div>
+        <p>
+          The probability distribution for <em>Y</em> is:
+        </p>
+        <div>
+          \[ P(Y = y) = \frac{1}{2} \quad \text{for } y = 0 \text{ or } 1 \]
+        </div>
+        <p>
+          Since <em>X</em> and <em>Y</em> are independent, the probability that <em>X = x</em> and <em>Y =
+            y</em> can be calculated as:
+        </p>
+        <div>
+          \[ P(X = x \text{ and } Y = y) = P(X = x) \cdot P(Y = y) = \frac{1}{6} \cdot \frac{1}{2} =
+          \frac{1}{12} \]
+        </div>
+
+        <h2>Conditional Independence</h2>
+        <p>
+          Two events can also be conditionally independent given a third event. This means that, given the
+          third event, the occurrence of one event does not affect the probability of the other.
+        </p>
+        <h3>Example: Conditional Independence in Disease Testing</h3>
+        <p>
+          Suppose we are testing for a disease. Define the following events:
+        </p>
+        <ul>
+          <li><em>D</em>: A person has the disease.</li>
+          <li><em>T</em>: The test result is positive.</li>
+          <li><em>S</em>: The person is a smoker.</li>
+        </ul>
+        <p>
+          If <em>T</em> and <em>S</em> are conditionally independent given <em>D</em>, then knowing whether a
+          person smokes does not affect the test result for the disease if we already know whether they have
+          the disease.
+        </p>
+        <div>
+          \[ P(T \cap S \mid D) = P(T \mid D) \cdot P(S \mid D) \]
+        </div>
+
+        <h2>Independent and Identically Distributed (i.i.d.) Random Variables</h2>
+        <p>
+          Independence is also essential in defining a collection of random variables as independent and
+          identically distributed (i.i.d.). This property is key to many statistical theories, such as the Law
+          of Large Numbers and the Central Limit Theorem.
+        </p>
+        <h3>Example: Repeated Coin Tosses</h3>
+        <p>
+          If we toss a fair coin multiple times, each outcome (heads or tails) can be considered as a random
+          variable. Let:
+        </p>
+        <ul>
+          <li><em>X<sub>1</sub>, X<sub>2</sub>, ..., X<sub>n</sub></em> be the outcomes of <em>n</em> coin
+            tosses, where each <em>X<sub>i</sub></em> is a random variable that takes the value 1 for heads
+            and 0 for tails.</li>
+        </ul>
+        <p>
+          These random variables are i.i.d., meaning:
+        </p>
+        <ol>
+          <li>Each <em>X<sub>i</sub></em> has the same probability distribution: \[ P(X_i = 1) = \frac{1}{2}
+            \] and \[ P(X_i = 0) = \frac{1}{2} \].</li>
+          <li>They are independent: the outcome of one toss does not affect the outcome of another.</li>
+        </ol>
+      </section>
+    </div>
+    <div class="c-space">
+      <div class="input-box">
+        <div class="input-text">
+          <label for="intervals">Number of intervals</label>
+          <input type="number" value="350" min="1" max="10000" id="intervals" name="intervals">
+        </div>
+        <div class="input-text">
+          <label for="attackers">Number of attackers</label>
+          <input type="number" value="40" min="1" max="10000" id="attackers" name="attackers">
+        </div>
+        <div class="input-text">
+          <label for="lambda">Lambda</label>
+          <input type="number" value="1" min="1" max="10000" step="1" id="lambda" name="lambda">
+        </div>
+        <div class="input-execute">
+          <button type="button" onclick="onExecute()">Execute</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+      </div>
+      <script src="script.js"></script>
+    </div>
+  </main>
+</body>
+
+</html>
