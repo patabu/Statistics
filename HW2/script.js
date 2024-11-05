@@ -13,6 +13,7 @@ function onExecute() {
         drawDistributionChart(penetrationsData, numberOfServers, intermediateStep, 'intermediateChart');
         drawDistributionChart(penetrationsData, numberOfServers, numberOfServers, 'finalChart');
     } catch (error) {
+        window.alert(error);
         console.log(error);
     }
 }
@@ -170,25 +171,26 @@ function getOldInputData() {
 }
 
 function getInputData() {
-    const numberOfServers = Number(document.getElementById("servers").value);
+    const isStationaryRandomWalk = 
+    const numberOfServers = Number(document.getElementById("numberOfServers").value);
     if (numberOfServers <= 0) {
         window.alert("Servers must be at least 1");
         throw Error("Servers must be at least 1");
     }
-    const numberOfAttackers = Number(document.getElementById("attackers").value);
+    const numberOfAttackers = Number(document.getElementById("numberOfAttackers").value);
     if (numberOfAttackers <= 0) {
         window.alert("Attackers must be at least 1");
         throw Error("Attackers must be at least 1");
     }
     const probability = Number(document.getElementById("probability").value);
-    if (probability <= 0 || probability >= 1) {
-        window.alert("Probability must be between 0 and 1 excluded")
-        throw Error("Probability must be between 0 and 1 excluded");
+    if (probability < 0 || probability > 1) {
+        window.alert("Probability must be between 0 and 1")
+        throw Error("Probability must be between 0 and 1");
     }
     const intermediateStep = Number(document.getElementById("intermediateStep").value);    
     if (intermediateStep < 1 || intermediateStep >= numberOfServers) {
-        window.alert('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
-        throw Error('The intermediate step must be between 1 and ' + numberOfServers + ' excluded');
+        window.alert('The intermediate step must be between 1 and ' + numberOfServers - 1);
+        throw Error('The intermediate step must be between 1 and ' + numberOfServers - 1);
     }
     return { numberOfServers, numberOfAttackers, probability, intermediateStep };
 }

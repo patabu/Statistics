@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistical Independence</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Statistics Homework Repository</h1>
+      <p>Davide Bucci - Matricola 2193848</p>
+      <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="homework-content"></section>
+    </div>
+    <div class="c-space">
+      <div class="input-box">
+        <div class="radio-column">
+          <label>Random walk</label>
+          <div class="tex">
+            <input type="radio" checked="true" id="stationaryRandomWalk" name="randomWalk" value="stationary">
+            <label for="stationaryRandomWalk">Stationary</label><br>
+          </div>
+          <div class="tex">
+            <input type="radio" id="biasedRandomWalk" name="randomWalk" value="biased">
+            <label for="biasedRandomWalk">Biased</label><br>
+          </div>
+        </div>
+
+        <div class="radio-column">
+          <label>Time division</label>
+          <div class="tex">
+            <input type="radio" checked="true" id="serverDivision" name="timeDivision" value="servers">
+            <label for="serverDivision">Servers</label><br>
+          </div>
+          <div class="tex">
+            <input type="radio" id="continuousDivision" name="timeDivision" value="intervals">
+            <label for="continuousDivision">Continuous time</label><br>
+          </div>
+        </div>
+        
+        <div class="radio-column">
+          <label>Draw distribution</label>
+          <div class="tex">
+            <input type="checkbox" checked="true" id="finalDistribution" name="distribution" value="final">
+            <label for="html">Final</label><br>
+          </div>
+          <div class="tex">
+            <input type="checkbox" checked="true" id="intermediateDistribution" name="distribution" value="intermediate">
+            <label for="css">Intermediate</label><br>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="input-text">
+            <label>Number of intervals</label>
+            <input type="number" value="350" min="1" max="10000" id="numberOfServers" name="numberOfIntervals">
+          </div>
+          <div class="input-text">
+            <label>Number of attackers</label>
+            <input type="number" value="40" min="1" max="10000" id="numberOfAttackers" name="numberOfAttackers">
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="input-text">
+            <label>Intemediate step</label>
+            <input type="number" value="40" min="1" max="10000" id="intermediateStep" name="intermediateStep">
+          </div>
+          <div class="input-text">
+            <label>Probability</label>
+            <input type="number" value="0.5" min="0.01" max="1" step="0.1" id="probability" name="probability">
+          </div>
+        </div>
+        <div class="input-execute">
+          <button type="button" onclick="onExecute()">Execute</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+      </div>
+      <script src="script.js"></script>
+    </div>
+  </main>
+</body>
+
+</html>
