@@ -109,15 +109,21 @@ function onExecute() {
     }
 }
 
+function onContinuousTimeClick() {
+    const checkbox = document.getElementById("continuousDivision");
+    const serversInput = document.getElementById("patato");
+    serversInput.style.display = checkbox.checked ? 'none' : 'block';
+}
+
 function getInputData() {
-    const numberOfIntervals = Number(document.getElementById("intervals").value);
-    if (numberOfIntervals <= 0 || numberOfIntervals > 10000) throw Error("Intervals must be between 1 and 10000");
+    const numberOfServers = Number(document.getElementById("intervals").value);
+    if (numberOfServers <= 0 || numberOfServers > 10000) throw Error("Intervals must be between 1 and 10000");
     
     const numberOfAttackers = Number(document.getElementById("attackers").value);
     if (numberOfAttackers <= 0 || numberOfAttackers > 10000) throw Error("Attackers must be between 1 and 10000");
 
     const probability = Number(document.getElementById("probability").value);
-    if (probability < 0 || probability > 1) throw Error("Probability must be between 0 and 1");
+    if (probability < 0 || probability > 1) throw Error("Probability must be between 0 and 1"); 
 
-    return { numberOfIntervals, numberOfAttackers, probability };
+    return { numberOfServers, numberOfAttackers, probability };
 }
