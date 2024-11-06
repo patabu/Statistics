@@ -20,10 +20,198 @@
   </header>
   <main>
     <div class="container">
-      <section class="homework-content"></section>
+      <section class="homework-content">
+        <h2>Simple Proof of Cauchy-Schwarz Inequality for Random Variables</h2>
+
+        <p>Let \(X\) and \(Y\) be two random variables. We want to prove:</p>
+
+        \[
+        |\operatorname{Cov}(X, Y)| \leq \sqrt{\operatorname{Var}(X)} \cdot \sqrt{\operatorname{Var}(Y)}.
+        \]
+
+        <p>1. <strong>Consider the expectation of the square of a linear combination</strong>:<br>
+          For any real numbers \(a\) and \(b\), consider the random variable \(aX + bY\). Since the expectation of the
+          square of any real-valued random variable is always non-negative, we have:</p>
+
+        \[
+        \mathbb{E}[(aX + bY)^2] \geq 0.
+        \]
+
+        <p>2. <strong>Expand the square</strong>:<br>
+          Expanding \((aX + bY)^2\) inside the expectation, we get:</p>
+
+        \[
+        \mathbb{E}[(aX + bY)^2] = a^2 \mathbb{E}[X^2] + 2ab \mathbb{E}[XY] + b^2 \mathbb{E}[Y^2].
+        \]
+
+        <p>3. <strong>Rewrite in terms of variances and covariance</strong>:<br>
+          Using the definitions \(\operatorname{Var}(X) = \mathbb{E}[X^2] - (\mathbb{E}[X])^2\), \(\operatorname{Var}(Y)
+          = \mathbb{E}[Y^2] - (\mathbb{E}[Y])^2\), and \(\operatorname{Cov}(X, Y) = \mathbb{E}[XY] -
+          \mathbb{E}[X]\mathbb{E}[Y]\), we can simplify this to:</p>
+
+        \[
+        a^2 \operatorname{Var}(X) + 2ab \operatorname{Cov}(X, Y) + b^2 \operatorname{Var}(Y) \geq 0.
+        \]
+
+        <p>4. <strong>Treat as a quadratic inequality</strong>:<br>
+          This is a quadratic inequality in \(a\) and \(b\). For this inequality to hold for all \(a\) and \(b\), the
+          discriminant must be less than or equal to zero:</p>
+
+        \[
+        (2 \operatorname{Cov}(X, Y))^2 - 4 \operatorname{Var}(X) \operatorname{Var}(Y) \leq 0.
+        \]
+
+        <p>5. <strong>Simplify the discriminant condition</strong>:<br>
+          Expanding and simplifying, we get:</p>
+
+        \[
+        4 (\operatorname{Cov}(X, Y))^2 \leq 4 \operatorname{Var}(X) \operatorname{Var}(Y),
+        \]
+
+        <p>which simplifies to:</p>
+
+        \[
+        |\operatorname{Cov}(X, Y)| \leq \sqrt{\operatorname{Var}(X)} \cdot \sqrt{\operatorname{Var}(Y)}.
+        \]
+
+        <p>This completes the proof in just a few steps by leveraging the quadratic form and its non-negativity.</p>
+        <h2>Independence and Uncorrelation in Statistics</h2>
+
+        <p>In statistics, <strong>independence</strong> and <strong>uncorrelation</strong> are related but distinct
+          concepts describing relationships between random variables. Here’s an explanation of each concept and their
+          differences, along with common measures to quantify them.</p>
+
+        <h3>1. Independence</h3>
+
+        <p>Independence between two random variables \( X \) and \( Y \) means that knowing the outcome of one gives no
+          information about the outcome of the other. Mathematically, \( X \) and \( Y \) are independent if:</p>
+
+        \[
+        P(X \leq x \text{ and } Y \leq y) = P(X \leq x) \cdot P(Y \leq y)
+        \]
+
+        <p>for all values of \( x \) and \( y \). In terms of probability densities or mass functions, this implies that
+          the joint distribution can be factored into the product of the marginal distributions:</p>
+
+        \[
+        f_{X,Y}(x, y) = f_X(x) \cdot f_Y(y).
+        \]
+
+        <h3>Key Properties of Independence</h3>
+
+        <ul>
+          <li><strong>Stronger Condition:</strong> Independence is a stronger condition than uncorrelation. If \( X \)
+            and \( Y \) are independent, they are also uncorrelated.</li>
+          <li><strong>Non-Linear Relationships:</strong> Independence implies that there is no relationship, linear or
+            otherwise, between the variables. Thus, independence captures both linear and nonlinear dependencies.</li>
+          <li><strong>Common Measure:</strong> Independence is often difficult to test directly in practice without
+            knowing the joint distribution. However, it can sometimes be inferred by comparing conditional
+            distributions.</li>
+        </ul>
+
+        <h3>2. Uncorrelation</h3>
+
+        <p>Uncorrelation refers specifically to the lack of a <strong>linear relationship</strong> between two random
+          variables. Two variables \( X \) and \( Y \) are uncorrelated if their <strong>covariance</strong> is zero:
+        </p>
+
+        \[
+        \operatorname{Cov}(X, Y) = \mathbb{E}[(X - \mathbb{E}[X])(Y - \mathbb{E}[Y])] = 0.
+        \]
+
+        <p>Since correlation is a standardized form of covariance, uncorrelation can also be expressed in terms of the
+          <strong>correlation coefficient</strong> \( r \):</p>
+
+        \[
+        r = \frac{\operatorname{Cov}(X, Y)}{\sqrt{\operatorname{Var}(X) \cdot \operatorname{Var}(Y)}} = 0.
+        \]
+
+        <h3>Key Properties of Uncorrelation</h3>
+
+        <ul>
+          <li><strong>Weaker Condition:</strong> Uncorrelation is a weaker condition than independence. Uncorrelated
+            variables may still exhibit nonlinear dependencies.</li>
+          <li><strong>Only Linear Relationship:</strong> Uncorrelation only ensures that there is no linear relationship
+            between the variables. Nonlinear relationships can still exist even if two variables are uncorrelated.</li>
+          <li><strong>Common Measure:</strong> The most common measure of uncorrelation is the correlation coefficient
+            \( r \), which ranges from -1 to 1, where \( r = 0 \) indicates no linear correlation.</li>
+        </ul>
+
+        <h3>Conceptual Differences</h3>
+
+        <table border="1">
+          <tr>
+            <th>Aspect</th>
+            <th>Independence</th>
+            <th>Uncorrelation</th>
+          </tr>
+          <tr>
+            <td><strong>Definition</strong></td>
+            <td>No information about one variable is given by the other</td>
+            <td>No linear relationship between variables</td>
+          </tr>
+          <tr>
+            <td><strong>Implication</strong></td>
+            <td>Implies uncorrelation</td>
+            <td>Does not imply independence</td>
+          </tr>
+          <tr>
+            <td><strong>Relationship Type</strong></td>
+            <td>No relationship (linear or nonlinear)</td>
+            <td>No linear relationship; nonlinear dependencies possible</td>
+          </tr>
+          <tr>
+            <td><strong>Testing</strong></td>
+            <td>Generally harder to test; often inferred</td>
+            <td>Easier to test with covariance or correlation coefficient</td>
+          </tr>
+        </table>
+
+        <h3>Examples to Illustrate the Difference</h3>
+
+        <ol>
+          <li><strong>Independence and Uncorrelation:</strong> If \( X \) and \( Y \) are independent, they are also
+            uncorrelated, because independence means there is no relationship at all, not even a linear one.</li>
+          <li><strong>Uncorrelation but not Independence:</strong> Consider a case where \( X \) is uniformly
+            distributed over some range, and \( Y = X^2 \). These variables are uncorrelated, because the linear
+            correlation coefficient is zero (since the relationship is quadratic, not linear). However, \( X \) and \( Y
+            \) are clearly not independent, as \( Y \) depends directly on \( X \).</li>
+        </ol>
+
+        <h3>Measures of Independence and Uncorrelation</h3>
+
+        <ol>
+          <li><strong>Correlation Coefficient \( r \):</strong> Measures the linear relationship between variables. \( r
+            = 0 \) indicates uncorrelation, but it does not necessarily indicate independence.</li>
+          <li><strong>Mutual Information:</strong> A measure from information theory that quantifies the dependence
+            between two variables. Mutual information is zero if and only if \( X \) and \( Y \) are independent. It
+            captures both linear and nonlinear dependencies, making it a more general measure than correlation.</li>
+          <li><strong>Higher-Order Correlations:</strong> Sometimes, higher-order statistics like skewness or kurtosis
+            can help detect dependencies that are not captured by standard covariance. These measures are often used in
+            the analysis of non-Gaussian data.</li>
+          <li><strong>Chi-Square Test for Independence:</strong> For categorical data, a chi-square test can be used to
+            determine if there is an association between two categorical variables. If the test indicates independence,
+            we can conclude that knowing one variable provides no information about the other.</li>
+        </ol>
+      </section>
     </div>
     <div class="c-space">
       <div class="input-box">
+
+        <div class="radio-column">
+          <label>Time division</label>
+          <div class="tex">
+            <input type="radio" checked="true" id="serverDivision" onclick="onDivisionTimeClick()" name="timeDivision"
+              value="servers">
+            <label for="serverDivision">Servers</label><br>
+          </div>
+          <div class="tex">
+            <input type="radio" id="continuousDivision" onclick="onDivisionTimeClick()" name="timeDivision"
+              value="intervals">
+            <label for="continuousDivision">Continuous time</label><br>
+          </div>
+        </div>
+
         <div class="radio-column">
           <label>Random walk</label>
           <div class="tex">
@@ -32,22 +220,14 @@
           </div>
           <div class="tex">
             <input type="radio" id="biasedRandomWalk" name="randomWalk" value="biased">
-            <label for="biasedRandomWalk">Biased</label><br>
+            <label for="biasedRandomWalk">Biased ±1</label><br>
+          </div>
+          <div class="tex" id="sqrtBiasedInput">
+            <input type="radio" id="sqrtBiasedRandomWalk" name="randomWalk" value="sqrtBiased">
+            <label for="sqrtBiasedRandomWalk">Biased ±√dt</label><br>
           </div>
         </div>
 
-        <div class="radio-column">
-          <label>Time division</label>
-          <div class="tex">
-            <input type="radio" checked="true" id="serverDivision" name="timeDivision" value="servers">
-            <label for="serverDivision">Servers</label><br>
-          </div>
-          <div class="tex">
-            <input type="radio" id="continuousDivision" onclick="onContinuousTimeClick()" name="timeDivision" value="intervals">
-            <label for="continuousDivision">Continuous time</label><br>
-          </div>
-        </div>
-        
         <div class="radio-column">
           <label>Draw distribution</label>
           <div class="tex">
@@ -55,14 +235,15 @@
             <label for="html">Final</label><br>
           </div>
           <div class="tex">
-            <input type="checkbox" checked="true" id="intermediateDistribution" name="distribution" value="intermediate">
+            <input type="checkbox" checked="true" id="intermediateDistribution"
+              onclick="onIntermediateDistributionClick()" name="distribution" value="intermediate">
             <label for="css">Intermediate</label><br>
           </div>
         </div>
 
         <div class="column">
-          <div class="input-text" id="patato">
-            <label>Number of intervals</label>
+          <div class="input-text" id="serversInput">
+            <label>Number of servers</label>
             <input type="number" value="350" min="1" max="10000" id="numberOfServers" name="numberOfServers">
           </div>
           <div class="input-text">
@@ -72,13 +253,13 @@
         </div>
 
         <div class="column">
-          <div class="input-text">
+          <div class="input-text" id="intermediateStepInput">
             <label>Intemediate step</label>
             <input type="number" value="40" min="1" max="10000" id="intermediateStep" name="intermediateStep">
           </div>
           <div class="input-text">
             <label id="probabilityText">Probability</label>
-            <input type="number" value="0.5" min="0.01" max="1" step="0.1" id="probability" name="probability">
+            <input type="number" value="1" id="probability" name="probability">
           </div>
         </div>
         <div class="input-execute">
