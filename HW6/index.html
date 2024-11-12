@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistical Independence</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Statistics Homework Repository</h1>
+      <p>Davide Bucci - Matricola 2193848</p>
+      <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="homework-content"></section>
+    </div>
+    <div class="c-space">
+      <div class="input-box">
+        <div class="input-text">
+          <label>Number of probabilites</label>
+          <input type="number" name="" id="numberOfProbabilities">
+        </div>
+        <div class="input-text">
+          <label>Number of attempts</label>
+          <input type="number" id="numberOfAttempts" value="20">
+        </div>
+        <div class="radio-column">
+          <label>Probability generation</label>
+          <div class="tex">
+            <input type="radio" id="randomProbabilities" name="probability" value="randomProbabilities">
+            <label for="randomProbabilities">Random</label><br>
+          </div>
+          <div class="tex">
+            <input type="radio" checked="true" id="closeProbabilities" name="probability" value="closeProbabilities">
+            <label for="closeProbabilities">Close probabilities</label><br>
+          </div>
+        </div>
+        <div class="input-box">
+          <button type="button" onclick="generateProbabilities()">Generate probabilities</button>
+        </div>
+      </div>
+      <div class="input-box" id="input-dynamic-container">
+
+      </div>
+      <div class="input-box">
+        <div class="input-execute">
+          <button type="button" onclick="onExecute()">Execute</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+      </div>
+      <script src="script.js"></script>
+    </div>
+  </main>
+</body>
+
+</html>
