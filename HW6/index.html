@@ -20,39 +20,96 @@
   </header>
   <main>
     <div class="container">
-      <section class="homework-content"></section>
+      <section class="homework-content">
+        <h2>Fundamental Theorem of Calculus and Its Relationship with Density Functions and Cumulative Distribution
+          Functions (CDFs)</h2>
+
+        <h1>1. Recall of the Fundamental Theorem of Calculus</h1>
+        <p>The Fundamental Theorem of Calculus (FTC) connects differentiation and integration in two key parts:</p>
+        <ul>
+          <li><strong>First Part</strong>: If \( f \) is a continuous function on an interval \([a, b]\), and \( F(x) =
+            \int_a^x f(t) \, dt \), then
+            \[
+            F'(x) = f(x).
+            \]
+          </li>
+          <li><strong>Second Part</strong>: If \( F \) is any antiderivative of \( f \) on \([a, b]\), then
+            \[
+            \int_a^b f(x) \, dx = F(b) - F(a).
+            \]
+          </li>
+        </ul>
+        <p>In essence, this theorem allows us to compute the integral of a function by knowing an antiderivative, and to
+          find that integration and differentiation are inverse processes.</p>
+
+        <h1>2. Connection to Density Functions and Cumulative Distribution Functions (CDFs)</h1>
+        <p>In probability and statistics, the FTC helps describe the relationship between <strong>probability density
+            functions (PDFs)</strong> and <strong>cumulative distribution functions (CDFs)</strong>.</p>
+
+        <ul>
+          <li><strong>Density Function (PDF)</strong>: If \( X \) is a continuous random variable with probability
+            density function \( f(x) \), then the CDF \( F(x) \) of \( X \) is given by
+            \[
+            F(x) = P(X \leq x) = \int_{-\infty}^{x} f(t) \, dt.
+            \]
+            Here, \( F(x) \) represents the probability that the random variable \( X \) takes on a value less than or
+            equal to \( x \).</li>
+
+          <li><strong>Cumulative Distribution Function (CDF)</strong>: Using the FTC, we see that if \( F(x) \) is the
+            CDF of a continuous random variable with PDF \( f(x) \), then the derivative of \( F(x) \) gives the PDF:
+            \[
+            F'(x) = f(x).
+            \]
+            Thus, \( f(x) \) can be derived from \( F(x) \) by differentiating the CDF.</li>
+        </ul>
+
+        <h1>3. Using the FTC in Probability Problems</h1>
+        <ul>
+          <li><strong>Probabilities as Areas</strong>: In probability, calculating the probability of a random variable
+            falling within a range (e.g., \( P(a \leq X \leq b) \)) is equivalent to finding the area under the PDF
+            curve from \( a \) to \( b \), which we do with integration:
+            \[
+            P(a \leq X \leq b) = \int_{a}^{b} f(x) \, dx = F(b) - F(a).
+            \]
+          </li>
+
+          <li><strong>Applications</strong>: The FTC is frequently applied in problems that require finding
+            probabilities, expected values, or variances for continuous random variables by integrating the PDF.</li>
+        </ul>
+
+        <h1>4. Steps to Demonstrate the Relationship in Your Research</h1>
+        <p>Here’s a suggested outline:</p>
+        <ul>
+          <li>Begin with a detailed explanation of the Fundamental Theorem of Calculus.</li>
+          <li>Define density functions (PDFs) and cumulative distribution functions (CDFs).</li>
+          <li>Use examples (e.g., the normal distribution) to illustrate how the CDF is derived from the PDF using
+            integration.</li>
+          <li>Show how differentiation of the CDF gives the PDF, using the FTC.</li>
+          <li>Discuss practical applications, such as finding probabilities over intervals.</li>
+        </ul>
+        <p>By following these steps, you’ll illustrate the FTC's foundational role in connecting integration and
+          differentiation to probability concepts through density and cumulative distribution functions.</p>
+
+      </section>
     </div>
     <div class="c-space">
       <div class="input-box">
         <div class="input-text">
           <label>Number of probabilites</label>
-          <input type="number" name="" id="numberOfProbabilities">
+          <input type="number" id="numberOfProbabilities" value="10">
         </div>
         <div class="input-text">
           <label>Number of attempts</label>
           <input type="number" id="numberOfAttempts" value="20">
         </div>
-        <div class="radio-column">
-          <label>Probability generation</label>
-          <div class="tex">
-            <input type="radio" id="randomProbabilities" name="probability" value="randomProbabilities">
-            <label for="randomProbabilities">Random</label><br>
-          </div>
-          <div class="tex">
-            <input type="radio" checked="true" id="closeProbabilities" name="probability" value="closeProbabilities">
-            <label for="closeProbabilities">Close probabilities</label><br>
-          </div>
-        </div>
-        <div class="input-box">
+        <div class="input-text">
           <button type="button" onclick="generateProbabilities()">Generate probabilities</button>
         </div>
       </div>
-      <div class="input-box" id="input-dynamic-container">
-
-      </div>
+      <div class="input-box" id="input-dynamic-container"></div>
       <div class="input-box">
         <div class="input-execute">
-          <button type="button" onclick="onExecute()">Execute</button>
+          <button type="button" id="executeButton" onclick="onExecute()">Execute</button>
         </div>
       </div>
       <div class="canvas-container">

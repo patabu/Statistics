@@ -140,3 +140,7 @@ canvas {
 .radio-column > .tex > input {
     width: 1rem;
 }
+
+#executeButton {
+    display: none;
+}
