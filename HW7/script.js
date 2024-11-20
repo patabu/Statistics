@@ -130,12 +130,16 @@ function drawChartLines(probabilities) {
 
 function drawMeanAndVariance(probabilitiesData, values) {
     const { mean: theoreticalMean, variance: theoreticalVariance} = calculateTheoreticalMeanVariance(probabilitiesData);
-    const { mean: empiricMean, variance: empiricVariance } = calculateMeanVariance(values);
+    const { mean: empiricMean, variance: empiricVariance, means, variances } = calculateMeanVarianceAllSteps(values);
+    const meanOfMeans = means.reduce((sum, val) => sum + val, 0) / means.length; // * Calcolo della media delle medie
+    const meanOfVariances = variances.reduce((sum, val) => sum + val, 0) / variances.length; // * Calcolo della media delle varianze
     ctx.fillStyle = "#000000";
-    // ctx.fillText('Theoretical Mean: ' + theoreticalMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 20);
-    // ctx.fillText('Theoretical Variance: ' + theoreticalVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 40);
-    // ctx.fillText('Empiric Mean: ' + empiricMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 20);
-    // ctx.fillText('Empiric Variance: ' + empiricVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 40);
+    ctx.fillText('Theoretical Mean: ' + theoreticalMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 380, graphPositions.yEnd + 40);
+    ctx.fillText('Theoretical Variance: ' + theoreticalVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 380, graphPositions.yEnd + 60);
+    ctx.fillText('Empiric Mean: ' + empiricMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 40);
+    ctx.fillText('Empiric Variance: ' + empiricVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 60);
+    ctx.fillText('Mean of means: ' + meanOfMeans.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 40);
+    ctx.fillText('Mean of variances: ' + meanOfVariances.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 60);
 
     
 }
@@ -243,6 +247,20 @@ function calculateMeanVariance(realizations) {
     let mean = 0, variance = 0;
     for (let i = 0; i < realizations.length; i++) [mean, variance] = updateMeanVariance(mean, variance, realizations[i], i + 1);
     return { mean, variance: variance / realizations.length };
+}
+
+function calculateMeanVarianceAllSteps(realizations) {
+    let mean = 0, variance = 0;
+    let iMean, iVariance;
+    let means = [], variances = [];
+    for (let i = 0; i < realizations.length; i++) {
+        [iMean, iVariance] = updateMeanVariance(mean, variance, realizations[i], i + 1);
+        mean = iMean;
+        variance = iVariance;
+        means.push(iMean);
+        variances.push(iVariance / (i + 1));        
+    }
+    return { mean, variance: variance / realizations.length, means, variances};
 }
 
 function calculateTheoreticalMeanVariance(probabilitiesData) {
