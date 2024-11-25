@@ -23,27 +23,27 @@ function drawChartAxis() {
 
     // * Draw right Y-axis
     ctx.beginPath();
-    ctx.moveTo(graphPositions.xEnd, graphPositions.yEnd);
-    ctx.lineTo(graphPositions.xEnd, graphPositions.yStart);
+    ctx.moveTo(graph1Positions.xEnd, graph1Positions.yEnd);
+    ctx.lineTo(graph1Positions.xEnd, graph1Positions.yStart);
     ctx.stroke();
 
     // * Draw left Y-axis
     ctx.beginPath();
-    ctx.moveTo(graphPositions.xStart, graphPositions.yStart);
-    ctx.lineTo(graphPositions.xStart, graphPositions.yEnd);
+    ctx.moveTo(graph1Positions.xStart, graph1Positions.yStart);
+    ctx.lineTo(graph1Positions.xStart, graph1Positions.yEnd);
     ctx.stroke();
 
     // * Draw X-axis
     ctx.beginPath();
-    ctx.moveTo(graphPositions.xStart, graphPositions.yEnd);
-    ctx.lineTo(graphPositions.xEnd, graphPositions.yEnd);
+    ctx.moveTo(graph1Positions.xStart, graph1Positions.yEnd);
+    ctx.lineTo(graph1Positions.xEnd, graph1Positions.yEnd);
     ctx.stroke();
 
     // * Draw legend 20x5 rect
     ctx.fillStyle = "#329e11";
     ctx.fillRect(
-        ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 150,
-        graphPositions.yStart - 30,
+        ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 150,
+        graph1Positions.yStart - 30,
         60,
         10
     );
@@ -51,28 +51,28 @@ function drawChartAxis() {
 
     ctx.font = "14px serif";
     ctx.fillStyle = "#000000";
-    ctx.fillText('Empiric', ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 80, graphPositions.yStart - 20)
+    ctx.fillText('Empiric', ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 80, graph1Positions.yStart - 20)
 
     ctx.fillStyle = "#bec748";
     ctx.fillRect(
-        ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 50,
-        graphPositions.yStart - 30,
+        ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart + 50,
+        graph1Positions.yStart - 30,
         60,
         10
     );
     ctx.fill();
 
     ctx.fillStyle = "#000000";
-    ctx.fillText('Theoretical', ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 120, graphPositions.yStart - 20)
+    ctx.fillText('Theoretical', ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart + 120, graph1Positions.yStart - 20)
 }
 
 function drawChartLines(probabilities) {
-    const spacePerProbability = (graphPositions.xEnd - graphPositions.xStart) / probabilities.length;
+    const spacePerProbability = (graph1Positions.xEnd - graph1Positions.xStart) / probabilities.length;
 
     const higherDistribution = Math.max(...(probabilities.map(probabilityData => [probabilityData.empiricDistribution, probabilityData.theoreticalDistribution])).flat());    
     const distributionPerSpace = higherDistribution / 10;
     
-    const graphHeight = graphPositions.yEnd - graphPositions.yStart;
+    const graphHeight = graph1Positions.yEnd - graph1Positions.yStart;
     const spacePerDistribution = graphHeight / 10;
 
     const padding = spacePerProbability / 20;
@@ -83,8 +83,8 @@ function drawChartLines(probabilities) {
         ctx.beginPath();
         ctx.fillStyle = "#329e11"; 
         ctx.rect(
-            (graphPositions.xStart + (distributionIndex * spacePerProbability)) + padding,
-            graphPositions.yEnd - 1,
+            (graph1Positions.xStart + (distributionIndex * spacePerProbability)) + padding,
+            graph1Positions.yEnd - 1,
             distributionWidth,
             -((probabilities[distributionIndex].empiricDistribution / higherDistribution) * graphHeight)
         );
@@ -94,15 +94,15 @@ function drawChartLines(probabilities) {
         ctx.fillStyle = "#bec748";
         ctx.beginPath();
         ctx.rect(
-            (graphPositions.xStart + (distributionIndex * spacePerProbability)) + (2 * padding) + distributionWidth,
-            graphPositions.yEnd - 1,
+            (graph1Positions.xStart + (distributionIndex * spacePerProbability)) + (2 * padding) + distributionWidth,
+            graph1Positions.yEnd - 1,
             distributionWidth,
             -((probabilities[distributionIndex].theoreticalDistribution / higherDistribution) * graphHeight)
         );
         ctx.fill();
         
         ctx.fillStyle = "#000000";
-        ctx.fillText(`(${probabilities[distributionIndex].startProbability.toFixed(2)}, ${probabilities[distributionIndex].endProbability.toFixed(2)}]`, (graphPositions.xStart + (distributionIndex * spacePerProbability)), graphPositions.yEnd + 15)
+        ctx.fillText(`(${probabilities[distributionIndex].startProbability.toFixed(2)}, ${probabilities[distributionIndex].endProbability.toFixed(2)}]`, (graph1Positions.xStart + (distributionIndex * spacePerProbability)), graph1Positions.yEnd + 15)
     }
 
     ctx.strokeStyle = "#000000";
@@ -112,18 +112,18 @@ function drawChartLines(probabilities) {
     ctx.lineWidth = .5;
     for (let indexProbability = 1; indexProbability < probabilities.length; indexProbability++) {
         ctx.beginPath();
-        ctx.moveTo(graphPositions.xStart + (spacePerProbability * indexProbability), graphPositions.yStart);
-        ctx.lineTo(graphPositions.xStart + (spacePerProbability * indexProbability), graphPositions.yEnd);
+        ctx.moveTo(graph1Positions.xStart + (spacePerProbability * indexProbability), graph1Positions.yStart);
+        ctx.lineTo(graph1Positions.xStart + (spacePerProbability * indexProbability), graph1Positions.yEnd);
         ctx.stroke();
     }
 
     for (let horizontalRowIndex = 0; horizontalRowIndex < 10; horizontalRowIndex++) {
-        const y = graphPositions.yStart + (spacePerDistribution * horizontalRowIndex)
+        const y = graph1Positions.yStart + (spacePerDistribution * horizontalRowIndex)
         ctx.beginPath();
-        ctx.moveTo(graphPositions.xStart, y);
-        ctx.lineTo(graphPositions.xEnd, y);
+        ctx.moveTo(graph1Positions.xStart, y);
+        ctx.lineTo(graph1Positions.xEnd, y);
         ctx.stroke();
-        ctx.fillText((higherDistribution - (distributionPerSpace * horizontalRowIndex)).toFixed(2), graphPositions.xStart - 35, y);
+        ctx.fillText((higherDistribution - (distributionPerSpace * horizontalRowIndex)).toFixed(2), graph1Positions.xStart - 35, y);
     }
 
 }
@@ -134,12 +134,12 @@ function drawMeanAndVariance(probabilitiesData, values) {
     const meanOfMeans = means.reduce((sum, val) => sum + val, 0) / means.length; // * Calcolo della media delle medie
     const meanOfVariances = variances.reduce((sum, val) => sum + val, 0) / variances.length; // * Calcolo della media delle varianze
     ctx.fillStyle = "#000000";
-    ctx.fillText('Theoretical Mean: ' + theoreticalMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 380, graphPositions.yEnd + 40);
-    ctx.fillText('Theoretical Variance: ' + theoreticalVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 380, graphPositions.yEnd + 60);
-    ctx.fillText('Empiric Mean: ' + empiricMean.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 40);
-    ctx.fillText('Empiric Variance: ' + empiricVariance.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart - 180, graphPositions.yEnd + 60);
-    ctx.fillText('Mean of means: ' + meanOfMeans.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 40);
-    ctx.fillText('Mean of variances: ' + meanOfVariances.toFixed(3), ((graphPositions.xEnd - graphPositions.xStart) / 2) + graphPositions.xStart + 20, graphPositions.yEnd + 60);
+    ctx.fillText('Theoretical Mean: ' + theoreticalMean.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 380, graph1Positions.yEnd + 40);
+    ctx.fillText('Theoretical Variance: ' + theoreticalVariance.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 380, graph1Positions.yEnd + 60);
+    ctx.fillText('Empiric Mean: ' + empiricMean.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 180, graph1Positions.yEnd + 40);
+    ctx.fillText('Empiric Variance: ' + empiricVariance.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart - 180, graph1Positions.yEnd + 60);
+    ctx.fillText('Mean of means: ' + meanOfMeans.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart + 20, graph1Positions.yEnd + 40);
+    ctx.fillText('Mean of variances: ' + meanOfVariances.toFixed(3), ((graph1Positions.xEnd - graph1Positions.xStart) / 2) + graph1Positions.xStart + 20, graph1Positions.yEnd + 60);
 
     
 }

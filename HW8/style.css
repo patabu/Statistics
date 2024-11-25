@@ -1,0 +1,162 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.title-box {
+    background-color: rgb(200, 200, 200, 0.5);
+    padding: 1rem 0 1rem 0;
+}
+
+.title {
+    font-size: 55px;
+    text-align: center;
+}
+
+.input-box {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    input {
+        width: 5rem;
+    }
+}
+
+.input-execute {
+    display: flex;
+    justify-content: center;
+    button {
+        background-color: rgb(10, 182, 19);
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+}
+
+.homework-content {
+    padding: 40px 0;
+}
+
+.homework-content h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.homework-content h3 {
+    font-size: 1.8rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.homework-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+ul {
+    padding-left: 3rem;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Input styles */
+input[type="number"] {
+    padding: 10px;
+    border: 2px solid #0066cc;
+    border-radius: 5px;
+    font-size: .8rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #005bb5;
+    outline: none;
+}
+
+/* Button styles */
+.input-execute {
+    margin: 10px 0;
+    padding: 2rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Canvas container styles */
+.canvas-container {
+    border: 2px solid #0066cc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+}
+
+canvas {
+    display: block;
+}
+
+.radio-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column > label {
+    align-self: center;
+}
+
+.column > .input-text {
+    margin-bottom: .4rem;
+}
+
+.column > .input-text > label {
+    display: inline-block;
+    width: 10rem;
+}
+
+.radio-column > .tex > input {
+    width: 1rem;
+}
+
+#executeButton {
+    display: none;
+}
+
+.texts {
+    display: flex;
+    gap: 1rem; /* Spazio tra i due elementi */
+    padding: 2rem 2rem 0 2rem;
+}
+  
+.texts details {
+    flex: 1; /* Ogni <details> occupa la stessa quantità di spazio */
+    overflow: auto; /* Aggiunge uno scroll se il contenuto è troppo lungo */
+    border: 1px solid #ddd; /* Aggiunge un bordo per maggiore chiarezza */
+    padding: 0.5rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
