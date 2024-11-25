@@ -58,8 +58,6 @@ function drawChartLines(frequencyDatas, graphPositions, isCiphered) {
     const padding = spacePerFrequency / 8;
     const frequencyWidth = spacePerFrequency - (2 * padding);
     for (let frequencyIndex = 0; frequencyIndex < frequencyDatas.length; frequencyIndex++) {
-        // * Empiric
-        
         ctx.beginPath();
         ctx.fillStyle = isCiphered ? "#ff66cc" : "#3385ff";
         ctx.rect(
@@ -114,9 +112,8 @@ function applyRandomCeaserCipher(textToCipher) {
 
 function decipherRandomCeaserCipher(textCiphered, orderedFrequencyCipheredText) {
     let randomShift = orderedFrequencyCipheredText[0].letter.charCodeAt(0) - 69;
-    if (randomShift < 0) randomShift = 21 + Math.round(randomShift);
 
-    const textDeciphered = textCiphered.split('').map(letter => {      
+    const textDeciphered = textCiphered.split('').map(letter => {   
         const charCode = letter.charCodeAt(0);        
         if (charCode >= 65 && charCode <= 90) {
             return String.fromCharCode((charCode - 65 + 26 - randomShift) % 26 + 65);
