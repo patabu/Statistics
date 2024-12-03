@@ -21,7 +21,78 @@
   <main>
     <div class="container">
       <section class="homework-content">
-        
+        <h1>Homework 7 (P): Discussion on Sample Size and Distribution</h1>
+
+        <div class="section">
+            <h2>1. Behavior with Few Samples</h2>
+            <div class="section-content">
+              <p><strong>Empirical Distribution Variability:</strong></p>
+              <ul>
+                  <li>When the number of samples is small, the empirical distribution exhibits higher variability.</li>
+                  <li>This happens because each sample has a significant impact on the distribution, and random fluctuations are more pronounced.</li>
+              </ul>
+              <p><strong>Noticeable Differences Between Distributions:</strong></p>
+              <ul>
+                  <li>The empirical distribution tends to deviate more significantly from the theoretical distribution.</li>
+                  <li>Empirical mean and variance often differ substantially from their theoretical counterparts.</li>
+              </ul>
+            </div>
+        </div>
+    
+        <div class="section">
+            <h2>2. Increasing the Number of Samples</h2>
+            <div class="section-content">
+              <p><strong>Effect on the Graph:</strong></p>
+              <ul>
+                  <li>As the number of samples increases, the empirical distribution progressively aligns with the theoretical distribution.</li>
+                  <li>Random variability is reduced as more samples "smooth out" local discrepancies.</li>
+              </ul>
+              <p><strong>Means and Variances:</strong></p>
+              <ul>
+                  <li>The empirical mean starts converging toward the theoretical mean, as guaranteed by the <em>Law of Large Numbers</em>.</li>
+                  <li>Similarly, the empirical variance approaches the theoretical variance, better capturing the data's spread.</li>
+              </ul>
+            </div>
+        </div>
+    
+        <div class="section">
+            <h2>3. Results with Many Samples (e.g., 5000)</h2>
+            <div class="section-content">
+              <p><strong>Empirical vs. Theoretical Distribution:</strong></p>
+              <ul>
+                  <li>With 5000 samples, the empirical distribution closely follows the theoretical distribution.</li>
+                  <li>The green bars (empirical) and yellow bars (theoretical) are almost overlapping.</li>
+              </ul>
+              <p><strong>Convergence of Mean and Variance:</strong></p>
+              <ul>
+                  <li>The empirical mean (7.837) and the theoretical mean (7.967) are very close.</li>
+                  <li>The empirical variance (18.662) is nearly identical to the theoretical variance (18.604).</li>
+              </ul>
+              <p><strong>Overall Convergence:</strong></p>
+              <ul>
+                  <li>This behavior is explained by the <em>Central Limit Theorem (CLT)</em>, which ensures that with enough samples, the empirical distribution becomes a faithful representation of the theoretical one.</li>
+              </ul>
+            </div>
+        </div>
+    
+        <div class="section conclusion">
+            <h2>4. Conclusions on the Effect of Sample Size</h2>
+            <p><strong>With Few Samples:</strong></p>
+            <ul>
+                <li>The empirical distribution may deviate significantly from the theoretical one.</li>
+                <li>Empirical means and variances show more noticeable discrepancies.</li>
+            </ul>
+            <p><strong>With Many Samples:</strong></p>
+            <ul>
+                <li>The empirical distribution becomes increasingly similar to the theoretical distribution.</li>
+                <li>Empirical means and variances converge toward the theoretical values.</li>
+            </ul>
+            <p><strong>Limits and Observations:</strong></p>
+            <ul>
+                <li>Although 5000 samples represent a significant number, small discrepancies remain, which would diminish further with an even larger sample size.</li>
+                <li>The marginal gain decreases as the number of samples increases: beyond a certain point, adding more samples yields negligible improvements.</li>
+            </ul>
+        </div>
       </section>
     </div>
     <div class="c-space">

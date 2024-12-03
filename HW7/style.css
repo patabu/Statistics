@@ -3,47 +3,24 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-.title-box {
-    background-color: rgb(200, 200, 200, 0.5);
-    padding: 1rem 0 1rem 0;
-}
-
-.title {
-    font-size: 55px;
-    text-align: center;
-}
-
-.input-box {
-    padding-top: 2rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    input {
-        width: 5rem;
-    }
-}
-
-.input-execute {
-    display: flex;
-    justify-content: center;
-    button {
-        background-color: rgb(10, 182, 19);
-        padding: 0.5rem 1rem 0.5rem 1rem;
-    }
-}
-
 .homework-content {
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
-.homework-content h2 {
+.homework-content h1 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
 
+.homework-content h2 {
+    font-size: 1.6rem;
+    text-decoration: underline;
+    text-decoration-thickness: .05rem;
+}
+
 .homework-content h3 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     margin-top: 30px;
     margin-bottom: 10px;
 }
@@ -51,7 +28,20 @@ body {
 .homework-content p {
     font-size: 1.1rem;
     line-height: 1.6;
-    margin-bottom: 20px;
+}
+
+.section {
+    padding: .4rem;
+}
+
+.section-content {
+    margin: 10px 20px;
+}
+
+.conclusion {
+    background-color: #cae7fb;
+    border: 1px solid #9fb6d6;
+    border-radius: 1rem
 }
 
 ul {
@@ -63,18 +53,29 @@ label {
     font-weight: bold;
 }
 
+/* Practical section CSS */
+
+.input-execute {
+    display: flex;
+    justify-content: center;
+    button {
+        background-color: rgb(10, 182, 19);
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+}
+
 /* Input styles */
 input[type="number"] {
-    padding: 10px;
+    padding: .5rem;
     border: 2px solid #0066cc;
-    border-radius: 5px;
+    border-radius: .4rem;
     font-size: .8rem;
-    transition: border-color 0.3s ease;
 }
 
 input[type="number"]:focus {
-    border-color: #005bb5;
+    border-color: #0099ff;
     outline: none;
+    transition: border-color .5s ease;
 }
 
 /* Button styles */
@@ -143,4 +144,14 @@ canvas {
 
 #executeButton {
     display: none;
+}
+
+.input-box {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    input {
+        width: 5rem;
+    }
 }
