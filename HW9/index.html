@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Statistical Independence</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="../style.css">
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <h1>Statistics Homework Repository</h1>
+      <p>Davide Bucci - Matricola 2193848</p>
+      <p>Statistics 2024-2025 course (Sapienza Università di Roma)</p>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section class="homework-content">
+        <h1>Sampling Variance Analysis</h1>
+
+        <p>In this exercise, the goal is to determine the distribution of the sample variances taken from a theoretical distribution, calculating both the corrected (with Bessel's correction) and uncorrected variance. Then, we analyze the relationship between the sample variance distribution and the characteristics of the parent (theoretical) distribution, specifically its mean and variance.</p>
+    
+        <h2>Definitions</h2>
+        <ul>
+            <li><strong>Theoretical Distribution</strong>: This is the probability distribution from which we draw our samples. We can assume that the samples are taken from a normal or uniform distribution, but the exercise does not specify the type, so assumptions can be made.</li>
+            <li><strong>Sample Variance</strong>: The variance calculated on the samples taken from the theoretical distribution. There are two types of sample variance:
+                <ul>
+                    <li><strong>Corrected Variance</strong>: Calculated by dividing by \(n - 1\), where \(n\) is the sample size, to correct for the bias in estimating the population variance from a sample.</li>
+                    <li><strong>Uncorrected Variance</strong>: Calculated by dividing by \(n\), with no correction for the bias in estimation.</li>
+                </ul>
+            </li>
+        </ul>
+    
+        <h2>Objective</h2>
+        <p>The objective of this problem is to determine the <strong>distribution of sample variances</strong>, both corrected and uncorrected. This involves:
+            <ul>
+                <li>Calculating the variance for each drawn sample.</li>
+                <li>Calculating the <strong>mean</strong> and <strong>variance</strong> of the sample variance distribution.</li>
+                <li>Analyzing the relationship between the calculated statistics (mean and variance) from the samples and the theoretical distribution’s parameters (mean and variance of the population).</li>
+            </ul>
+        </p>
+    
+        <h2>Sample Variance Distribution</h2>
+        <p>When we draw samples from a theoretical distribution, we calculate the sample variance for each sample. If we repeat this process many times, we obtain a distribution of sample variances. The number of samples and their size will affect the behavior of this distribution.</p>
+    
+        <h3>1. Corrected vs Uncorrected Variance</h3>
+        <ul>
+            <li><strong>Corrected Variance</strong>:
+                <p>The corrected sample variance is used when the sample is an estimate of a larger population. Dividing by \(n - 1\) compensates for the bias that occurs with smaller samples.</p>
+            </li>
+            <li><strong>Uncorrected Variance</strong>:
+                <p>The uncorrected sample variance tends to be a lower estimate of the population variance because it does not account for the bias from sampling.</p>
+            </li>
+        </ul>
+    
+        <h3>2. Relationship with Theoretical Distribution</h3>
+        <p>
+            <strong>Mean of the Sample Variance Distribution</strong>: 
+            When calculating the variance for many samples, the <strong>mean</strong> of the sample variance distribution should approach the variance of the population. However, with Bessel's correction (dividing by \(n - 1\)), the mean of the corrected sample variance distribution will exactly equal the population variance.
+        </p>
+        <p>
+            <strong>Variance of the Sample Variance Distribution</strong>: 
+            The variance of the sample variance distribution depends on the sample size. In general, the <strong>variance of the sample variance</strong> decreases as the sample size \(n\) increases. This implies that larger samples lead to more precise variance estimates.
+        </p>
+    
+        <h2>Observations and Analysis</h2>
+        <p>
+            <strong>With a Small Sample</strong>:
+            <ul>
+                <li>The sample variance may significantly differ from the population variance due to random fluctuations. The distribution of sample variances can vary considerably.</li>
+                <li>The <strong>corrected variance</strong> (using \(n-1\)) tends to be a better estimate of the population variance.</li>
+            </ul>
+        </p>
+        <p>
+            <strong>With a Large Sample</strong>:
+            <ul>
+                <li>The <strong>mean of the sample variances</strong> should approach the population variance as the random fluctuations become less significant.</li>
+                <li>The <strong>variance of the sample variances</strong> will reduce, showing that larger samples lead to more precise variance estimates.</li>
+            </ul>
+        </p>
+    
+        <h2>Conclusions</h2>
+        <ul>
+            <li><strong>Sample Variance Distribution</strong>: Calculating the distribution of sample variances (corrected and uncorrected) provides valuable insights into the variability of variance estimates depending on the sample size. The distribution depends on the number of samples drawn and their size.</li>
+            <li><strong>Mean and Variance of the Sample Variance Distribution</strong>: The mean of the sample variance distribution with Bessel’s correction should be a more accurate estimate of the population variance. The variance of the sample variance distribution decreases as the sample size increases.</li>
+            <li><strong>Relationship with the Theoretical Distribution</strong>: Empirical observations of the sample variances show that, with larger samples, the calculated statistics (mean and variance) from the samples approach the theoretical population parameters (mean and variance).</li>
+        </ul>
+    
+      </section>
+    </div>
+    <div class="c-space">
+      <div class="input-box">
+        <div class="input-text">
+          <label>Number of probabilites</label>
+          <input type="number" id="numberOfProbabilities" value="10">
+        </div>
+        <div class="input-text">
+          <label>Number of attempts</label>
+          <input type="number" id="numberOfAttempts" value="20">
+        </div>
+        <div class="input-text">
+          <button type="button" onclick="generateProbabilities()">Generate probabilities</button>
+        </div>
+      </div>
+      <div class="input-box" id="input-dynamic-container"></div>
+      <div class="input-box">
+        <div class="input-execute">
+          <button type="button" id="executeButton" onclick="onExecute()">Execute</button>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="myCanvas" width="1000" height="1000"></canvas>
+      </div>
+      <script src="script.js"></script>
+    </div>
+  </main>
+</body>
+
+</html>
