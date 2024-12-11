@@ -1,0 +1,157 @@
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.homework-content {
+    padding: 20px 0;
+}
+
+.homework-content h1 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.homework-content h2 {
+    font-size: 1.6rem;
+    text-decoration: underline;
+    text-decoration-thickness: .05rem;
+}
+
+.homework-content h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+.homework-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+.section {
+    padding: .4rem;
+}
+
+.section-content {
+    margin: 10px 20px;
+}
+
+.conclusion {
+    background-color: #cae7fb;
+    border: 1px solid #9fb6d6;
+    border-radius: 1rem
+}
+
+ul {
+    padding-left: 3rem;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Practical section CSS */
+
+.input-execute {
+    display: flex;
+    justify-content: center;
+    button {
+        background-color: rgb(10, 182, 19);
+        padding: 0.5rem 1rem 0.5rem 1rem;
+    }
+}
+
+/* Input styles */
+input[type="number"] {
+    padding: .5rem;
+    border: 2px solid #0066cc;
+    border-radius: .4rem;
+    font-size: .8rem;
+}
+
+input[type="number"]:focus {
+    border-color: #0099ff;
+    outline: none;
+    transition: border-color .5s ease;
+}
+
+/* Button styles */
+.input-execute {
+    margin: 10px 0;
+    padding: 2rem;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0066cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #005bb5;
+}
+
+/* Canvas container styles */
+.canvas-container {
+    border: 2px solid #0066cc;
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem;
+}
+
+canvas {
+    display: block;
+}
+
+.radio-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.column > label {
+    align-self: center;
+}
+
+.column > .input-text {
+    margin-bottom: .4rem;
+}
+
+.column > .input-text > label {
+    display: inline-block;
+    width: 10rem;
+}
+
+.radio-column > .tex > input {
+    width: 1rem;
+}
+
+#executeButton {
+    display: none;
+}
+
+.input-box {
+    padding-top: 2rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    input {
+        width: 5rem;
+    }
+}
